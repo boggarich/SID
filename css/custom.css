@@ -1,0 +1,212 @@
+.btn-custom {
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    line-height: normal;
+    white-space: nowrap;
+    outline: none;
+    box-shadow: none;
+    border: solid 1px #cccccc;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #484a4c;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-appearance: button;
+    background: linear-gradient(to bottom, #fff 1%,#e8e8e8 100%);
+}
+
+.color-black {
+    color: #484a4c;
+}
+
+#google-maps-container {
+    height: 400px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+  }
+
+  .google-maps-legends h2{
+      font-size: 0.875rem;
+  }
+
+hr.solid {
+    color: rgba(0, 0, 0, 0.07);
+    border: 1px solid;
+}
+
+.legend-dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: black;
+}
+
+.legend-dot.target {
+    background: #EE3968;
+}
+
+.legend-dot.started {
+    background: #2198F3;
+}
+
+.legend-dot.submitted {
+    background-color: black;
+}
+
+.legend-dot.printed {
+    background: #FFAE42;
+}
+
+.legend-dot.delivered {
+    background: #74CB40;
+}
+
+.progress-bar {
+    border-radius: 20px;
+}
+
+.progress-bar.target {
+    background-color: #EE3968;
+}
+
+.progress-bar.started, .project-status.started {
+    background: #2198F3;
+}
+
+.progress-bar.submitted {
+    background: black;
+}
+
+.project-status.submitted {
+    background-color: #868E96;
+}
+
+.progress-bar.printed, .project-status.printed {
+    background: #FFAE42;
+}
+
+.progress-bar.delivered {
+    background: #74CB40;
+}
+
+.project-status.delivered {
+    background-color: #1BC9B6;
+}
+
+.project-status.target {
+    background-color: #FD6D8E;
+}
+
+.progress-bar.population.completed {
+    background-color: #2198F3;
+}
+
+.js-easy-pie-chart.overall-completion {
+    color: #BB1BF4;
+}
+
+.js-easy-pie-chart.active-officers {
+    color: #51AEF6;
+}
+
+.profile-image-project-officer {
+    width: 2rem;
+    height: auto;
+}
+
+.whitespace-nowrap {
+    white-space: nowrap;
+}
+
+.page-sidebar {
+    background-color: #051F33;
+    background-image: none;
+}
+
+#js-nav-menu li a {
+    color: white;
+}
+
+#js-nav-menu li a i {
+    color: white;
+}
+
+.nav-menu li.active:not(.open) > a:before {
+    color: #2198F3;
+}
+
+.grid  {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row-gap: 8px;
+    grid-column-gap: 8px;
+}
+
+.badge-pill {
+    padding: 8px 24px;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.print-jobs-pending .badge-pill-wrapper,
+.print-jobs-completed .badge-pill-wrapper {
+    width: 100px;
+}
+
+.print-jobs-pending .badge-pill-wrapper .badge-pill,
+.print-jobs-completed .badge-pill-wrapper .badge-pill {
+    width: 100%;
+}
+
+.badge-pill.downloading {
+    background-color: #BB1BF4;
+}
+
+.badge-pill.downloaded {
+    background-color: #FD6D8E;
+}
+
+.js-easy-pie-chart.percentage-submitted {
+    color: #51AEF6;
+}
+
+.js-easy-pie-chart.percentage-downloaded {
+    color: black;
+}
+
+.js-easy-pie-chart.percentage-printed {
+    color: #BB1BF4;
+}
+
+.js-easy-pie-chart.percentage-delivered {
+    color: #52BF11;
+}
+
+span.icon {
+    padding-right: 12px;
+}
+
+span.icon-small {
+    padding-right: 6px;
+}
+
+.dataTable-schools-table-head {
+    background: #A0E0F0;
+}
+
+.page-logo {
+    background: #2198F3;
+}
+
+.page-logo img {
+    height: auto;
+    width: auto;
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+}
