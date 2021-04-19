@@ -19,7 +19,7 @@ initMap();*/
 
 let map;
 
-function initMap(external) {
+async function initMap(external) {
     //console.log(external)
     map = new google.maps.Map(document.getElementById("google-maps-container"), {
       center: new google.maps.LatLng(8.0236654, -0.9332576),
@@ -84,7 +84,7 @@ function initMap(external) {
 
 
 
-    const features = external;
+    const features = await external;
 
     var infoWindowContent = [];
   

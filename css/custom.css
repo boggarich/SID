@@ -198,6 +198,10 @@ span.icon-small {
     background: #A0E0F0;
 }
 
+.dataTable-project-officers-table-head {
+    background: #A0E0F0;
+}
+
 .page-logo {
     background: #2198F3;
 }
@@ -209,4 +213,8 @@ span.icon-small {
 
 .modal-header {
     border-bottom: 1px solid #dee2e6;
+}
+
+.pac-container {
+    z-index: 100000000 !important;
 }

@@ -905,10 +905,10 @@
                                                         <div class="d-inline-block flex-grow-1 ml-3">
                                                             <div class="d-flex">
                                                                 Target
-                                                                <span id="TargetSpan" class="d-inline-block ml-auto">15/150</span>
+                                                                <span id="TargetSpan" class="d-inline-block ml-auto">0</span>
                                                             </div>
                                                             <div class="progress progress-sm mb-3">
-                                                                <div id="TargetProgress" class="progress-bar target bg-fusion-400" role="progressbar" style="width: 0%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div id="TargetProgress" class="progress-bar target bg-fusion-400" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -918,10 +918,10 @@
                                                         <div class="d-inline-block flex-grow-1 ml-3">
                                                             <div class="d-flex">
                                                                 Started
-                                                                <span id="StartedSpan" class="d-inline-block ml-auto">20%</span>
+                                                                <span id="StartedSpan" class="d-inline-block ml-auto">0%</span>
                                                             </div>
                                                             <div class="progress progress-sm mb-3">
-                                                                <div id="StartedProgress" class="progress-bar started bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div id="StartedProgress" class="progress-bar started bg-fusion-400" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -934,10 +934,10 @@
                                                         <div class="d-inline-block flex-grow-1 ml-3">
                                                             <div class="d-flex">
                                                                 Submitted
-                                                                <span id="SubmittedSpan" class="d-inline-block ml-auto">55%</span>
+                                                                <span id="SubmittedSpan" class="d-inline-block ml-auto">0%</span>
                                                             </div>
                                                             <div class="progress progress-sm mb-3">
-                                                                <div id="SubmittedProgress" class="progress-bar submitted bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div id="SubmittedProgress" class="progress-bar submitted bg-fusion-400" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -947,10 +947,10 @@
                                                         <div class="d-inline-block flex-grow-1 ml-3">
                                                             <div class="d-flex">
                                                                 Printed
-                                                                <span id="PrintedSpan" class="d-inline-block ml-auto">135/150</span>
+                                                                <span id="PrintedSpan" class="d-inline-block ml-auto">0</span>
                                                             </div>
                                                             <div class="progress progress-sm mb-3">
-                                                                <div id="PrintedProgress" class="progress-bar printed bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div id="PrintedProgress" class="progress-bar printed bg-fusion-400" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -960,10 +960,10 @@
                                                         <div class="d-inline-block flex-grow-1 ml-3">
                                                             <div class="d-flex">
                                                                 Delivered
-                                                                <span id="DeliveredSpan" class="d-inline-block ml-auto">140/150</span>
+                                                                <span id="DeliveredSpan" class="d-inline-block ml-auto">0</span>
                                                             </div>
                                                             <div class="progress progress-sm mb-3">
-                                                                <div id="DeliveredProgress" class="progress-bar delivered bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div id="DeliveredProgress" class="progress-bar delivered bg-fusion-400" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2646,9 +2646,10 @@
                                 full.projectOfficers.forEach(element => {return element.fullName});
                             }
                             
-                            return `<div class="d-flex justify-content-end" <img src="img/demo/avatars/avatar-c.png" class="profile-image-project-officer rounded-circle ml-1" alt="Dr. KB Tandoh">
+                            return `<div class="d-flex justify-content-end">
                                                             <img src="img/demo/avatars/avatar-e.png" class="profile-image-project-officer rounded-circle ml-1" alt="Dr. KB Tandoh">
-                                                            <img src="img/demo/avatars/avatar-m.png" class="profile-image-project-officer rounded-circle ml-1" alt="Dr. KB Tandoh"></div>`
+                                                            <img src="img/demo/avatars/avatar-m.png" class="profile-image-project-officer rounded-circle ml-1" alt="Dr. KB Tandoh">
+                                    </div>`
                            
                         },
                     },
@@ -2775,6 +2776,7 @@
                 
 
 
+                $('.project-officer-img').tooltip('show');
 
                 $('.js-thead-colors a').on('click', function()
                 {
