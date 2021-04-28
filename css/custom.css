@@ -72,12 +72,25 @@ hr.solid {
     background-color: #EE3968;
 }
 
+.text.target {
+    color: #EE3968;
+}
+
+
 .progress-bar.started, .project-status.started {
     background: #2198F3;
 }
 
+.text.started {
+    color: #2198F3;
+}
+
 .progress-bar.submitted {
     background: black;
+}
+
+.text.submitted {
+    color: black;
 }
 
 .project-status.submitted {
@@ -88,8 +101,16 @@ hr.solid {
     background: #FFAE42;
 }
 
+.text.printed {
+    color: #FFAE42;
+}
+
 .progress-bar.delivered {
     background: #74CB40;
+}
+
+.text.delivered {
+    color: #74CB40;
 }
 
 .project-status.delivered {
@@ -160,6 +181,7 @@ hr.solid {
 .print-jobs-pending .badge-pill-wrapper .badge-pill,
 .print-jobs-completed .badge-pill-wrapper .badge-pill {
     width: 100%;
+    
 }
 
 .badge-pill.downloading {
@@ -218,3 +240,45 @@ span.icon-small {
 .pac-container {
     z-index: 100000000 !important;
 }
+
+span.select2-container * {
+    z-index:10050;
+}
+
+.dragdropzone-active {
+    background: rgba(0, 0, 0, 0.07);
+}
+
+.item-row-image img {
+    width: 35px;
+    height: auto;
+}
+
+.underline {
+    text-decoration: underline !important;
+}
+
+
+#sid-card-tooltip {
+    background-color: white;
+    color: white;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    box-shadow: 0 0 15px rgba(145, 155, 180, 0.30);
+    z-index: 9;
+  }
+
+  #sid-card-tooltip img {
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+  }
+
+  #sid-card-tooltip {
+    /* ... */
+    display: none;
+  }
+  
+  #sid-card-tooltip[data-show] {
+    display: block;
+  }

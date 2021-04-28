@@ -11,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <title>
-            Page Title - Category - Ghana Knowledge Bank
+            SID Card Generator
         </title>
         <meta name="description" content="Page Title">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,6 +33,7 @@
         <link rel="stylesheet" media="screen, print" href="css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css">
         <link rel="stylesheet" media="screen, print" href="css/formplugins/select2/select2.bundle.css">
         <link rel="stylesheet" media="screen, print" href="css/datagrid/datatables/datatables.bundle.css">
+        <link rel="stylesheet" media="screen, print" href="css/notifications/toastr/toastr.css">
         <link id="custom" rel="stylesheet" media="screen, print" href="css/custom.css">
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE"></script>
 
@@ -774,7 +775,7 @@
                             <div class="d-flex align-items-center">
                                 <a href="#" data-toggle="dropdown" title="drtandoh@gkb.gh" class="pl-2 pr-3 header-icon d-flex align-items-center justify-content-center ml-2 btn-custom">
                                     <img src="img/demo/avatars/avatar-admin.png" class="profile-image profile-image-header rounded-circle mr-3" alt="Dr. KB Tandoh">
-                                    <span>Muni</span>
+                                    <span>Kofi Baboni</span>
                                     <!-- you can also add username next to the avatar with the codes below:
 									<span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
 									<i class="ni ni-chevron-down hidden-xs-down"></i> -->
@@ -786,8 +787,8 @@
                                                 <img src="img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. KB Tandoh">
                                             </span>
                                             <div class="info-card-text">
-                                                <div class="fs-lg text-truncate text-truncate-lg">Dr. KB Tandoh</div>
-                                                <span class="text-truncate text-truncate-md opacity-80">drtandoh@gkb.gh</span>
+                                                <div class="fs-lg text-truncate text-truncate-lg">Dr. Kofi Baboni</div>
+                                                <span class="text-truncate text-truncate-md opacity-80">kofib@sid.gh</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1085,11 +1086,11 @@
                                                         <form>
                                                             <div class="form-group">
                                                               <label for="exampleInputEmail1">Institution name</label>
-                                                              <input type="email" class="form-control" id="" aria-describedby="emailHelp" placeholder="">
+                                                              <input type="text" class="form-control" id="NewSchoolName" aria-describedby="newSchoolName" placeholder="">
                                                             </div>
                                                             <div class="form-group">
                                                               <label for="exampleInputPassword1">Population</label>
-                                                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+                                                              <input type="text" class="form-control" id="NewSchoolPopulation" placeholder="">
                                                             </div>
                                                           </form>
                                                     </div>
@@ -1113,20 +1114,21 @@
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="mb-3">School name: </div>
+                                                        <div class="mb-3" id="AssignProjectOfficerSchoolNameHTML"></div>
                                                         <form>
                                                            
                                                             <div class="form-group">
                                                                 <label for="exampleInputPassword1" class="d-block">Officer name</label>
-                                                                <select class="custom-select" aria-label="Disabled select example">
-                                                                    <option selected>Schools</option>
+                                                                <select class="custom-select" aria-label="Disabled select example" id="AssignProjectOfficerNameSelect">
+                                                                    <option selected></option>
                                                                   </select>                                                              
                                                                 </div>
+                                                                <input type="hidden" value="" id="AssignProjectOfficerSchoolCode">
                                                           </form>
                                                     </div>
                                                     <div class="modal-footer mb-3">
                                                     
-                                                    <button type="button" class="btn btn-primary m-auto">Assign</button>
+                                                    <button type="button" class="btn btn-primary m-auto" data-dismiss="modal" onclick="projectManagementObj.assignInstitutionToPO()">Assign</button>
                                                     </div>
                                                 </div>
                                                 </div>
@@ -1188,7 +1190,7 @@
                                             </div>
 
                                             <!-- Add Task to Project Officer Name Modal -->
-                                            <div class="modal fade" id="addTaskToProjectOfficerNameModal" tabindex="-1" role="dialog" aria-labelledby="assignProjectOfficerModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="addTaskToProjectOfficerNameModal" role="dialog" aria-labelledby="assignProjectOfficerModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -1203,7 +1205,7 @@
                                                            
                                                             <div class="form-group">
                                                                 <label for="exampleInputPassword1" class="d-block">Institution name</label>
-                                                                <select class="custom-select" aria-label="Disabled select example">
+                                                                <select class="select2 custom-select form-control" id="AssignProjectOfficerInstSelect" aria-label="select example">
                                                                     <option selected>type name or institution code</option>
                                                                   </select>                                                              
                                                                 </div>
@@ -1212,7 +1214,8 @@
                                                                         <label for="exampleInputPassword1" class="d-block">Task Duration</label>
                                                                         <div class="d-flex">
                                                                             <div class="input-group mr-3">
-                                                                                <input type="text" class="form-control " placeholder="Start date" id="datepicker-4-1">
+                                                                                <input type="text" class="form-control datepicker" placeholder="Start date" id="DatePickerAssignProjectOfficerStartDate">
+                                                                                <input type="hidden"  value="" id="AssignProjectOfficerStartDate">
                                                                                 <div class="input-group-append">
                                                                                     <span class="input-group-text fs-xl">
                                                                                         <i class="fal fa-calendar-alt"></i>
@@ -1220,7 +1223,8 @@
                                                                                 </div>
                                                                             </div>                                                              
                                                                             <div class="input-group">
-                                                                                <input type="text" class="form-control " placeholder="End date" id="datepicker-4-1">
+                                                                                <input type="text" class="form-control datepicker" placeholder="End date" id="DatePickerAssignProjectOfficerEndDate">
+                                                                                <input type="hidden"  value="" id="AssignProjectOfficerEndDate">
                                                                                 <div class="input-group-append">
                                                                                     <span class="input-group-text fs-xl">
                                                                                         <i class="fal fa-calendar-alt"></i>
@@ -1230,13 +1234,14 @@
                                                                         </div>
                                                                         
                                                                         </div>
-                                                                        
+                                                                        <input type="hidden" value="" id="AssignProjectOfficerId">
+
                                                                 
                                                           </form>
                                                     </div>
                                                     <div class="modal-footer mb-3">
                                                     
-                                                        <button type="button" class="btn btn-primary">Assign Task</button>
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="projectManagementObj.addTaskToProjectOfficerName()">Assign Task</button>
                                                         <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
@@ -1287,15 +1292,15 @@
                                                         <form>
                                                             <div class="form-group">
                                                               <label for="exampleInputEmail1">Press name</label>
-                                                              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                                              <input type="text" class="form-control" id="NewPressName" aria-describedby="emailHelp" placeholder="">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="exampleInputPassword1">GPS code</label>
-                                                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ghana post GPS">
+                                                                <input type="text" class="form-control" id="NewPressGpsCode" placeholder="Ghana post GPS">
                                                               </div>
                                                             <div class="form-group">
                                                                 <label for="exampleInputPassword1">Location</label>
-                                                                <input type="text" class="form-control" id="NewPressLocation" placeholder="type location">
+                                                                <input type="text" class="form-control google-autocomplete" placeholder="type location">
                                                             </div>
                                                               
                                                                                                                               
@@ -1305,11 +1310,11 @@
                                                               
                                                               <div class="form-group">
                                                                 <label for="exampleInputPassword1">Contact Name</label>
-                                                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+                                                                <input type="text" class="form-control" id="NewPressContactName" placeholder="">
                                                               </div>
                                                               <div class="form-group">
                                                                 <label for="exampleInputPassword1">Contact No.</label>
-                                                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+                                                                <input type="text" class="form-control" id="NewPressContactNo" placeholder="">
                                                               </div>
                                                               
                                                               
@@ -1322,7 +1327,7 @@
                                                     <div class="modal-footer">
                                                     
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                        <button type="button" class="btn btn-primary ml-auto" onclick="projectManagementObj.addPress()">Create Press</button>
+                                                        <button type="button" class="btn btn-primary ml-auto" data-dismiss="modal" onclick="projectManagementObj.addPress()">Create Press</button>
                                                     </div>
                                                 </div>
                                                 </div>
@@ -1335,26 +1340,27 @@
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Assign Project Officer</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Assign Print Officer</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="mb-3">Press: </div>
+                                                        <div class="mb-3" id="AssignPrintOfficerPressNameHTML"></div>
                                                         <form>
                                                            
                                                             <div class="form-group">
                                                                 <label for="exampleInputPassword1" class="d-block">Officer name</label>
-                                                                <select class="custom-select" aria-label="Disabled select example">
+                                                                <select class="select2 form-control custom-select" aria-label="select example" id="AssignPrintOfficerNameSelect">
                                                                     <option selected>type Name or ID</option>
                                                                   </select>                                                              
                                                                 </div>
+                                                            <input type="hidden" id="AssignPrintOfficerPressId">
                                                           </form>
                                                     </div>
                                                     <div class="modal-footer mb-3">
                                                     
-                                                    <button type="button" class="btn btn-primary m-auto">Assign</button>
+                                                    <button type="button" class="btn btn-primary m-auto" data-dismiss="modal" onclick="projectManagementObj.assignOfficerToPress()">Assign</button>
                                                     </div>
                                                 </div>
                                                 </div>
@@ -1478,7 +1484,9 @@
                     <!-- BEGIN Page Footer -->
                     <footer class="page-footer" role="contentinfo">
                         <div class="d-flex align-items-center flex-1 text-muted">
-                            <span class="hidden-md-down fw-700">2021 © Ghana Knowledge Bank by&nbsp;<a href='https://www.realstudiosonline.com' class='text-primary fw-500' title='Ministry of Education' target='_blank'>Ministry of Education</a></span>
+                              <span class="hidden-md-down fw-700">2021 ©  SID Card Generator
+                                  <!--                                <a href='https://www.realstudiosonline.com' class='text-primary fw-500' title='Ministry of Education' target='_blank'>Ministry of Education</a>-->
+                            </span>
                         </div>
                         <div>
                             <ul class="list-table m-0">
@@ -1609,27 +1617,27 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        <nav class="shortcut-menu d-none d-sm-block">
-            <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
-            <label for="menu_open" class="menu-open-button ">
-                <span class="app-shortcut-icon d-block"></span>
-            </label>
-            <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">
-                <i class="fal fa-arrow-up"></i>
-            </a>
-            <a href="page_login.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">
-                <i class="fal fa-sign-out"></i>
-            </a>
-            <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="Full Screen">
-                <i class="fal fa-expand"></i>
-            </a>
-            <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left" title="Print page">
-                <i class="fal fa-print"></i>
-            </a>
-            <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left" title="Notepad">
-                <i class="fal fa-book"></i>
-            </a>
-        </nav>
+<!--        <nav class="shortcut-menu d-none d-sm-block">-->
+<!--            <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />-->
+<!--            <label for="menu_open" class="menu-open-button ">-->
+<!--                <span class="app-shortcut-icon d-block"></span>-->
+<!--            </label>-->
+<!--            <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">-->
+<!--                <i class="fal fa-arrow-up"></i>-->
+<!--            </a>-->
+<!--            <a href="page_login.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">-->
+<!--                <i class="fal fa-sign-out"></i>-->
+<!--            </a>-->
+<!--            <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="Full Screen">-->
+<!--                <i class="fal fa-expand"></i>-->
+<!--            </a>-->
+<!--            <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left" title="Print page">-->
+<!--                <i class="fal fa-print"></i>-->
+<!--            </a>-->
+<!--            <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left" title="Notepad">-->
+<!--                <i class="fal fa-book"></i>-->
+<!--            </a>-->
+<!--        </nav>-->
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -2280,18 +2288,32 @@
         <script src="js/formplugins/dropzone/dropzone.js"></script>
         <script src="js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
         <script src="js/formplugins/select2/select2.bundle.js"></script>
+        <script src="js/notifications/toastr/toastr.js"></script>
 
         <script>
-
+           
             function initialize() {
-                    var newPressLocation = document.getElementById('NewPressLocation');
-                    var newAssignedProjectLocation = document.getElementById('NewAssignedProjectLocation');
+                var autocompleteInput = document.getElementsByClassName('google-autocomplete');
 
-                    new google.maps.places.Autocomplete(newPressLocation);
-                    new google.maps.places.Autocomplete(newAssignedProjectLocation);
-                    }
+                for (i = 0; i < autocompleteInput.length; i++) {
+                    autocomplete = new google.maps.places.Autocomplete(autocompleteInput[i]);
+                    autocomplete.addListener("place_changed", getLatLng);
+                }
+            }
 
-                    google.maps.event.addDomListener(window, 'load', initialize);
+            function getLatLng() {
+      
+                const place = autocomplete.getPlace();
+                
+                var lat = place.geometry.location.lat();
+                var lng = place.geometry.location.lng();
+                
+                projectManagementClassObj.jsData.location.lat = lat;
+                projectManagementClassObj.jsData.location.lng = lng;
+
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
 
             /* demo scripts for change table color */
             /* change background */
@@ -2306,7 +2328,30 @@
 
             $(document).ready(function()
             {
+                
+                $('#DatePickerAssignProjectOfficerStartDate').datepicker(
+                {
+                    orientation: "top left",
+                    todayHighlight: true,
+                    templates: controls,
+                    autoclose: true,
+                        
+                }).on('changeDate', function(e) {
+                   $(projectManagementClassObj.jsId.assignProjectOfficerStartDate).val(e.format());
+                });
 
+                $('#DatePickerAssignProjectOfficerEndDate').datepicker(
+                {
+                    orientation: "top left",
+                    todayHighlight: true,
+                    templates: controls,
+                    autoclose: true,
+                        
+                }).on('changeDate', function(e) {
+                   $(projectManagementClassObj.jsId.assignProjectOfficerEndDate).val(e.format());
+                });
+        
+                
                 
 
                 $('#addProjectModal').on('show.bs.modal', function (e) {
@@ -2445,8 +2490,11 @@
                 projectManagementObj.getProjectOfficers()
                 .then(data => {
                     
-                    $('#dataTable-project-officers').dataTable(
+                    var projectOfficersDataTable = $('#dataTable-project-officers').DataTable(
                     {
+                        createdRow: function (row, data, dataIndex) {
+                            $(row).attr('data-project-officer-id', data.id);
+                        },
                         data: data.data.getProjectOfficers.projectOfficers,
                         columns: [
                             { data: 'fullName' },
@@ -2580,6 +2628,26 @@
                         ]
                     }
                 );
+
+                
+                $('#dataTable-project-officers tbody').on('click', '.badge-pill-wrapper', function(){
+                    
+                    
+                    var data_row = projectOfficersDataTable.row($(this).closest('tr')).data();
+                    var dataAttr = commonObj.getDataAttr(projectOfficersDataTable.row($(this).closest('tr')).node(), 'projectOfficerId');
+                   
+                    
+                    commonObj.setInputVal(projectManagementClassObj.jsId.assignProjectOfficerId, dataAttr);
+                    
+
+
+                    projectManagementObj.getSchools()
+                    .then(data => {
+                        commonObj.createSelectOptionsSchool(projectManagementClassObj.jsId.assignProjectOfficerInstSelect, data.data.getSchools.schools);
+                    });
+                });
+
+
                 })
                 .then(data => {
                     var dataTableSelectorProjectOfficers = `<div class="col-md-4 d-flex mb-3">
@@ -2603,14 +2671,17 @@
 
                 projectManagementObj.getPresses()
                 .then(data => {
-                    console.log(data)
-                    $('#dataTable-print-press').dataTable(
+                    //console.log(data, "print press")
+                var printPressDataTable = $('#dataTable-print-press').DataTable(
                 {
+                    createdRow: function (row, data, dataIndex) {
+                        $(row).attr('data-press-id', data.id);
+                    },
                     responsive: true,
                     data: data.data.getPresses.presses,
                     columns: [
                         { data: 'name' },
-                        { data: null },
+                        { data: 'officers' },
                         { data: null },
                         { data: null }
                     ],
@@ -2630,7 +2701,8 @@
                         orderable: false,
                         render: function(data, type, full, meta)
                         {
-                           return `<a data-toggle="modal" data-target="#assignPrintOfficerModal" ><button type="button" class="btn btn-outline-primary"><span class="icon-small"><i class="fal fa-plus"></i></span>  Assign Officer</button></a>`;
+                            console.log(data, 'press render')
+                           return `<a data-toggle="modal" data-target="#assignPrintOfficerModal"><button type="button" class="btn btn-outline-primary"><span class="icon-small"><i class="fal fa-plus"></i></span>  Assign Officer</button></a>`;
                             },
                         },  
                         {
@@ -2651,7 +2723,27 @@
                             return "\n\t\t\t\t\t\t<div class='d-flex demo'>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-success btn-icon btn-inline-block mr-1' title='Delete Record'><i class=\"fal fa-eye\"></i></a>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-warning btn-icon btn-inline-block mr-1' title='Edit'><i class=\"fal fa-edit btn-white-icon\"></i></a>\n\t\t\t\t\t\t\t<div class='dropdown d-inline-block'>\n\t\t\t\t\t\t\t\t<a href='#' class='btn btn-sm btn-outline-danger btn-icon' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-times\"></i></a>\n\t\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
                         },
                     }],
-                })
+                });
+
+                $('#dataTable-print-press tbody').on('click', 'button', function(){
+                    
+                    var data_row = printPressDataTable.row($(this).closest('tr')).data();
+                    var dataAttr = commonObj.getDataAttr(printPressDataTable.row($(this).closest('tr')).node(), 'pressId');
+                   
+                    
+                    commonObj.setInputVal(projectManagementClassObj.jsId.assignPrintOfficerPressId, dataAttr);
+
+
+                    $(projectManagementClassObj.jsId.assignPrintOfficerPressNameHTML).html(`Press: ${data_row.name}`);
+
+
+
+                    projectManagementObj.getPrintOfficers()
+                    .then(data => {
+                        commonObj.createSelectOptionsFullName(projectManagementClassObj.jsId.assignPrintOfficerNameSelect, data.data.getPrintOfficers.printOfficers);
+                    });
+
+                });
                 
                 }).then(data => {
                     var dataTableSelectorPrintPress = `<div class="col-md-4 d-flex mb-3">
@@ -2678,9 +2770,26 @@
 
                 projectManagementObj.getProjects()
                 .then(data => {
-
+                    console.log(data, "projects");
                     $('#dataTable-projects').dataTable(
                 {
+                    initComplete: function() {
+                        var dataTableSelectorProjects = `<div class="col-md-4 d-flex mb-3">
+                                                    <label class="form-label d-flex align-self-center whitespace-nowrap d-inline pr-3">Table for</label>
+                                                    <select id="dataTableSelector" class="custom-select form-control" onchange="projectManagementObj.showHideDiv($(this).val())">
+                                                        <option selected="" value="#ProjectsDiv">Projects</option>
+                                                        <option value="#SchoolsDiv">Schools</option>
+                                                        <option value="#PrintPressDiv">Print press</option>
+                                                        <option value="#ProjectOfficersDiv">Project Officers</option>
+                                                        <option value="#QualityOfficersDiv">Quality Officers</option>
+
+                                                    </select>
+                                                </div>`;
+
+                        $($('#dataTable-projects_wrapper > div.row > div')[1]).removeClass('col-md-6').addClass('col-md-3  mb-3');
+                        $($('#dataTable-projects_wrapper > div.row > div')[0]).removeClass('col-md-6').addClass('col-md-5  mb-3');
+                        $($('#dataTable-projects_wrapper > div.row')[0]).prepend(dataTableSelectorProjects);
+                    },
                     responsive: true,
                     data : data.data.getProjects.projects,
                     columns: [
@@ -2715,29 +2824,20 @@
 
 
                 }).then(data => {
-                    var dataTableSelectorProjects = `<div class="col-md-4 d-flex mb-3">
-                                                    <label class="form-label d-flex align-self-center whitespace-nowrap d-inline pr-3">Table for</label>
-                                                    <select id="dataTableSelector" class="custom-select form-control" onchange="projectManagementObj.showHideDiv($(this).val())">
-                                                        <option selected="" value="#ProjectsDiv">Projects</option>
-                                                        <option value="#SchoolsDiv">Schools</option>
-                                                        <option value="#PrintPressDiv">Print press</option>
-                                                        <option value="#ProjectOfficersDiv">Project Officers</option>
-                                                        <option value="#QualityOfficersDiv">Quality Officers</option>
 
-                                                    </select>
-                                                </div>`;
-
-                $($('#dataTable-projects_wrapper > div.row > div')[1]).removeClass('col-md-6').addClass('col-md-3  mb-3');
-                $($('#dataTable-projects_wrapper > div.row > div')[0]).removeClass('col-md-6').addClass('col-md-5  mb-3');
-                $($('#dataTable-projects_wrapper > div.row')[0]).prepend(dataTableSelectorProjects);
                 });
 
 
                
                 projectManagementObj.getSchools()
                 .then(data => {
-                    $('#dataTable-schools').dataTable(
+
+
+                    var schoolsDataTable = $('#dataTable-schools').DataTable(
                 {
+                    createdRow: function (row, data, dataIndex) {
+                        $(row).attr('data-school-code', data.schoolCode);
+                    },
                     data: data.data.getSchools.schools,
                     columns: [
                         { data : 'schoolName' },
@@ -2773,12 +2873,13 @@
                         title: 'Assign Officer',
                         render: function(data, type, full, meta)
                         {
+                            
                             var officers = '';
 
                             $.each(data, function(key, data) {
                                 officers += `
                                                                     <div class="badge-pill-wrapper pb-1">
-                                                                        <span class="badge badge-pill project-status job-pill started text-white">${data}</span>
+                                                                        <span class="badge badge-pill project-status job-pill started text-white">${data.fullName}</span>
                                                                     </div>
                                                                     
                                                                 `
@@ -2809,6 +2910,24 @@
                         },
                     }],
                 });
+
+                $('#dataTable-schools tbody').on('click', '.badge-pill-wrapper', function(){
+                    
+
+                    var data_row = schoolsDataTable.row($(this).closest('tr')).data();
+                    var dataAttr = commonObj.getDataAttr(schoolsDataTable.row($(this).closest('tr')).node(), 'schoolCode');
+                    
+                    commonObj.setInputVal(projectManagementClassObj.jsId.assignProjectOfficerSchoolCode, dataAttr);
+                    
+                    $(projectManagementClassObj.jsId.assignProjectOfficerSchoolNameHTML).html(`School name: ${data_row.schoolName}`);
+
+
+                    projectManagementObj.getProjectOfficers()
+                    .then(data => {
+                        commonObj.createSelectOptionsFullName(projectManagementClassObj.jsId.assignProjectOfficerNameSelect , data.data.getProjectOfficers.projectOfficers)
+                    });
+                });
+
                 }).then(data => {
                     var dataTableSelectorSchools = `<div class="col-md-4 d-flex mb-3">
                                                     <label class="form-label d-flex align-self-center whitespace-nowrap d-inline pr-3">Table for</label>
@@ -2842,11 +2961,8 @@
                     $('#dt-basic-example').removeClassPrefix('bg-').addClass(theadColor);
                 });
 
-                runDatePicker();
 
                 
-
-                                                
 
                                                
 
@@ -2861,19 +2977,9 @@
                 }
 
                 var runDatePicker = function() {
-                    $('#DatePickerNewProjectStartDate').datepicker(
-                    {
-                        orientation: "top left",
-                        todayHighlight: true,
-                        templates: controls
-                    });
+                    
 
-                    $('#DatePickerNewProjectEndDate').datepicker(
-                    {
-                        orientation: "top left",
-                        todayHighlight: true,
-                        templates: controls
-                    });
+                    
 
                     
                 }

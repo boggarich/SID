@@ -11,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <title>
-            Page Title - Category - Ghana Knowledge Bank
+            SID Card Generator
         </title>
         <meta name="description" content="Page Title">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -771,7 +771,7 @@
                             <div class="d-flex align-items-center">
                                 <a href="#" data-toggle="dropdown" title="drtandoh@gkb.gh" class="pl-2 pr-3 header-icon d-flex align-items-center justify-content-center ml-2 btn-custom">
                                     <img src="img/demo/avatars/avatar-admin.png" class="profile-image profile-image-header rounded-circle mr-3" alt="Dr. KB Tandoh">
-                                    <span>Muni</span>
+                                    <span>Kofi Baboni</span>
                                     <!-- you can also add username next to the avatar with the codes below:
 									<span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
 									<i class="ni ni-chevron-down hidden-xs-down"></i> -->
@@ -783,8 +783,8 @@
                                                 <img src="img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. KB Tandoh">
                                             </span>
                                             <div class="info-card-text">
-                                                <div class="fs-lg text-truncate text-truncate-lg">Dr. KB Tandoh</div>
-                                                <span class="text-truncate text-truncate-md opacity-80">drtandoh@gkb.gh</span>
+                                                <div class="fs-lg text-truncate text-truncate-lg">Dr. Kofi Baboni</div>
+                                                <span class="text-truncate text-truncate-md opacity-80">kofib@sid.gh</span>
                                             </div>
                                         </div>
                                     </div>
@@ -909,21 +909,21 @@
                                                     <tr>
                                                         <td>Accra High School<br><small class="text-muted">Submit date 01-03-2021</small></td>
                                                         <td>
-                                                            <div class="d-grid grid-col-3 grid print-jobs-pending">
+                                                            <div class="d-grid grid-col-3 grid print-jobs-pending" id="PrintJobsPending">
                                             
-                                                                    <div class="badge-pill-wrapper">
-                                                                        <span class="badge badge-pill project-status job-pill started text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 3')" onclick="printCenterObj.download(event)" data-innerText="Job 3">Job 3</span>
+                                                                    <div class="badge-pill-wrapper" draggable="true" ondragstart="printCenterObj.onDragStart(event)" ondragend="" data-job-id="1">
+                                                                        <span class="badge badge-pill project-status job-pill started text-white"  onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 3')" onclick="printCenterObj.download(event)" data-innerText="Job 3">Job 3</span>
                                                                     </div>
-                                                                    <div class="badge-pill-wrapper">
+                                                                    <div class="badge-pill-wrapper" draggable="true">
                                                                         <span class="badge badge-pill project-status job-pill started text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 4')" onclick="printCenterObj.download(event)" data-innerText="Job 4">Job 4</span>
                                                                     </div>
-                                                                    <div class="badge-pill-wrapper">
+                                                                    <div class="badge-pill-wrapper" draggable="true">
                                                                         <span class="badge badge-pill project-status job-pill started text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 5')" onclick="printCenterObj.download(event)" data-innerText="Job 5">Job 5</span>
                                                                     </div>
-                                                                    <div class="badge-pill-wrapper">
+                                                                    <div class="badge-pill-wrapper" draggable="true">
                                                                         <span class="badge badge-pill project-status job-pill started text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 6')" onclick="printCenterObj.download(event)" data-innerText="Job 6">Job 6</span>
                                                                     </div>
-                                                                    <div class="badge-pill-wrapper">
+                                                                    <div class="badge-pill-wrapper" draggable="true">
                                                                         <span class="badge badge-pill project-status job-pill started text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 7')" onclick="printCenterObj.download(event)" data-innerText="Job 7">Job 7</span>
                                                                     </div>
 
@@ -931,14 +931,14 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <div class="d-grid grid-col-3 grid print-jobs-completed">
+                                                            <div class="d-grid grid-col-3 grid print-jobs-completed dragdropzone" id="PrintJobsCompleted" ondragover="printCenterObj.onDragOver(event)" ondrop="printCenterObj.updateJobStatusToCompleted(event)">
                                                                 <div class="badge-pill-wrapper">
                                                                     <span class="badge badge-pill project-status job-pill delivered text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, '01.03.21')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 1')">Job 1</span>
                                                                 </div>
                                                                 <div class="badge-pill-wrapper">
                                                                     <span class="badge badge-pill project-status job-pill delivered text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, '01.03.21')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 2')">Job 2</span>
                                                                 </div>
-                                                        </div>
+                                                            </div>
                                                         </td>
                                                         <td>Lema Press<br>
                                                             <small class="text-muted">Greater Accra</small>
@@ -1068,7 +1068,9 @@
                                     <div class="panel-container show">
                                         <div class="panel-content">
                                             
-                                            
+                                            <figure>
+                                                <img src="img/SID_card_Sample.png" class="w-100">
+                                            </figure>
                                         </div>
                                     </div>
                                 </div>
@@ -1080,7 +1082,9 @@
                     <!-- BEGIN Page Footer -->
                     <footer class="page-footer" role="contentinfo">
                         <div class="d-flex align-items-center flex-1 text-muted">
-                            <span class="hidden-md-down fw-700">2021 © Ghana Knowledge Bank by&nbsp;<a href='https://www.realstudiosonline.com' class='text-primary fw-500' title='Ministry of Education' target='_blank'>Ministry of Education</a></span>
+                            <span class="hidden-md-down fw-700">2021 ©  SID Card Generator
+<!--                                <a href='https://www.realstudiosonline.com' class='text-primary fw-500' title='Ministry of Education' target='_blank'>Ministry of Education</a>-->
+                            </span>
                         </div>
                         <div>
                             <ul class="list-table m-0">
@@ -1211,27 +1215,28 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        <nav class="shortcut-menu d-none d-sm-block">
-            <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
-            <label for="menu_open" class="menu-open-button ">
-                <span class="app-shortcut-icon d-block"></span>
-            </label>
-            <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">
-                <i class="fal fa-arrow-up"></i>
-            </a>
-            <a href="page_login.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">
-                <i class="fal fa-sign-out"></i>
-            </a>
-            <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="Full Screen">
-                <i class="fal fa-expand"></i>
-            </a>
-            <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left" title="Print page">
-                <i class="fal fa-print"></i>
-            </a>
-            <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left" title="Notepad">
-                <i class="fal fa-book"></i>
-            </a>
-        </nav>
+<!--        <nav class="shortcut-menu d-none d-sm-block">-->
+<!--            <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />-->
+<!--            <label for="menu_open" class="menu-open-button ">-->
+<!--                <span class="app-shortcut-icon d-block"></span>-->
+<!--            </label>-->
+<!--            <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">-->
+<!--                <i class="fal fa-arrow-up"></i>-->
+<!--            </a>-->
+<!--            <a href="page_login.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">-->
+<!--                <i class="fal fa-sign-out"></i>-->
+<!--            </a>-->
+<!--            <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="Full Screen">-->
+<!--                <i class="fal fa-expand"></i>-->
+<!--            </a>-->
+<!--            <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left" title="Print page">-->
+<!--                <i class="fal fa-print"></i>-->
+<!--            </a>-->
+<!--            <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left" title="Notepad">-->
+<!--                <i class="fal fa-book"></i>-->
+<!--            </a>-->
+<!--        </nav>-->
+
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1301,6 +1306,7 @@
                                                 </div>
                                             </a>
                                         </li>
+
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="Dr Muni Alonte phd away">
                                                 <div class="d-table-cell align-middle status status-warning status-sm ">
@@ -1316,6 +1322,7 @@
                                                 </div>
                                             </a>
                                         </li>
+
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
@@ -1331,6 +1338,7 @@
                                                 </div>
                                             </a>
                                         </li>
+
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="Ama Baboni online">
                                                 <div class="d-table-cell align-middle status status-success status-sm">
@@ -1898,8 +1906,6 @@
                     columnDefs: [
                     {
                         targets: 3,
-                        /*	The `data` parameter refers to the data for the cell (defined by the
-                        	`data` option, which defaults to the column being worked with, in this case `data: 16`.*/
                         render: function(data, type, full, meta)
                         {
                             var badge = {

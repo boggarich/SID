@@ -12,6 +12,9 @@ let controlCenterClassObj = {
         submittedProgress : "#SubmittedProgress",
         overallCompletion : "#OverallCompletion",
         activeOfficers : "#ActiveOfficers"
+
+        //Add app Release
+
     },
     jsAttr : {
         style : "style",
@@ -43,7 +46,6 @@ class controlCenterClass {
                 locationName
                 projectOfficers{
                     fullName
-                    img
                 }
                 }
                 total
@@ -53,7 +55,7 @@ class controlCenterClass {
             variables : {
                 "input":  {
                     "perPage": 20,
-                    "pageNumber": 1
+                    "pageNumber": 0
                 }
             }
         }),
@@ -88,7 +90,8 @@ class controlCenterClass {
             var submitted = keyValue.submitted;
             var totalCompletion = keyValue.totalCompletion;
             var started = keyValue.started;
-            var totalSchools = full.totalSchools;
+            // var totalSchools = full.totalSchools;
+            var totalSchools = 721;
 
             totalSchools = +totalSchools;
 

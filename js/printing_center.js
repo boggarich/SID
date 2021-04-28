@@ -1,16 +1,53 @@
 let printCenterClassObj = {
+    jsId : {
+        printJobsCompleted : '#PrintJobsCompleted',
+    },
     jsClass : {
         jobPillDivClass : '.badge-pill-wrapper',
         jobPillBtn : 'job-pill',
     },
     jsAttr : {
         jobPillInnerText : 'innertext'
+    },
+    jsValue : {
+        jobPillDivClass : ''
     }
 }
 
 class printCenterClass {
     constructor (external) {
         this.ext = external;
+    }
+
+
+
+    updateJobStatusToCompleted(event) {
+        var ids = this.ext.jsId;
+        var jsValue = this.ext.jsValue;
+
+        $(jsValue.jobPillDivClass).children().removeClass('started');
+        $(jsValue.jobPillDivClass).children().addClass('delivered');
+
+
+        const dragElement = $(jsValue.jobPillDivClass);
+        const dragdropzone = $(ids.printJobsCompleted);
+
+        dragdropzone.append(dragElement);
+
+    }
+
+    onDragStart(event) {
+        var jsValue = this.ext.jsValue;
+        
+        jsValue.jobPillDivClass = event.target;
+
+
+    }
+
+    onDragOver(event) {
+
+        event.preventDefault();
+        
     }
 
     changeInnerHtmlByEvent(event, html) {

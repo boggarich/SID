@@ -47,6 +47,45 @@ class commonClass {
         this.changeInnerHtml(element, options);
     }
 
+    createSelectOptionsFullName(element, objData) {
+        var options = '';
+
+        $.each(objData, function(key, data) {
+            options +=  `<option value="${data.id}">${data.fullName}</option>`
+        });
+
+        this.changeInnerHtml(element, options);
+    }
+
+    btnLoader() {
+        return `<div class="spinner-border" style="width: 3rem; height: 3rem; text-align: center;" role="status">
+          <span class="sr-only"></span>
+        </div>`;
+    }
+
+    createSelectOptionsSchool(element, objData) {
+        var options = '';
+
+        $.each(objData, function(key, data) {
+            options +=  `<option value="${data.schoolCode}">${data.schoolName}</option>`
+        });
+
+        this.changeInnerHtml(element, options);
+    }
+
+    getDataAttr(element, dataAttr) {
+        return $(element).data(dataAttr);
+    }
+
+    setDataAttr(element, dataAttr, value) {
+        
+        return $(element).data(dataAttr, value);
+    }
+
+    setInputVal(element, value) {
+        return $(element).val(value);
+    }
+
     changeInnerHtmlByEvent(element, html="") {
         $(element).html(html);    
     }

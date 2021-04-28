@@ -11,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <title>
-            Page Title - Category - Ghana Knowledge Bank
+            SID Card Generator
         </title>
         <meta name="description" content="Page Title">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -771,7 +771,7 @@
                             <div class="d-flex align-items-center">
                                 <a href="#" data-toggle="dropdown" title="drtandoh@gkb.gh" class="pl-2 pr-3 header-icon d-flex align-items-center justify-content-center ml-2 btn-custom">
                                     <img src="img/demo/avatars/avatar-admin.png" class="profile-image profile-image-header rounded-circle mr-3" alt="Dr. KB Tandoh">
-                                    <span>Muni</span>
+                                    <span>Kofi Baboni</span>
                                     <!-- you can also add username next to the avatar with the codes below:
 									<span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
 									<i class="ni ni-chevron-down hidden-xs-down"></i> -->
@@ -783,8 +783,8 @@
                                                 <img src="img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. KB Tandoh">
                                             </span>
                                             <div class="info-card-text">
-                                                <div class="fs-lg text-truncate text-truncate-lg">Dr. KB Tandoh</div>
-                                                <span class="text-truncate text-truncate-md opacity-80">drtandoh@gkb.gh</span>
+                                                <div class="fs-lg text-truncate text-truncate-lg">Dr. Kofi Baboni</div>
+                                                <span class="text-truncate text-truncate-md opacity-80">kofib@sid.gh</span>
                                             </div>
                                         </div>
                                     </div>
@@ -886,53 +886,39 @@
                                         <div class="panel-content row">
 
                                            <div class="col-12">
-                                               <div class="row d-flex align-items-center pb-4 pt-4">
-                                            <div class="col-auto mb-3">Find By</div>
-                                            <div class="col-auto mb-3">
-                                                <select class="form-control">
-                                                    <option>Year</option>
-                                                  </select>
-                                            </div>
-                                            <div class="col-auto mb-3">
-                                                <select class="form-control">
-                                                    <option>Projects</option>
-                                                  </select>
-                                            </div>
-                                            <div class="col-auto mb-3">
-                                                <select class="form-control">
-                                                    <option>Institutions</option>
-                                                  </select>
-                                            </div>
-                                            <div class="col-auto mb-3">
-                                                <select class="form-control">
-                                                    <option>Persons</option>
-                                                  </select>
-                                            </div>
                                             
-                                        </div>
 
                                             <table id="dataTable-data-bank" class="table table-bordered table-hover table-striped w-100">
                                                 <thead>
                                                     <tr>
+                                                        <th>Person name</th>
+                                                        <th>ID No.</th>
                                                         <th>Project name</th>
-                                                        <th>Cards generated</th>
-                                                        <th>Duration</th>
+                                                        <th>Institution name</th>
+                                                        <th>Gender</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>Ghana Education Service - SHS 1 2021</td>
-                                                        <td>008</td>
-                                                        <td>Started on 01-03-2021</td>
+                                                        <td>Kofi wayo</td>
+                                                        <td>
+                                                            <div id="sid-card-tooltip" role="tooltip"><img src="img/SID_card_Sample.png" style="width: 350px; height: auto;"></div>
+                                                            <a href="" id="sid-card-link" class="underline" aria-describedby="tooltip">012020231308</a>
+                                                        </td>
+                                                        <td>GES SHS 2020 e-card</td>
+                                                        <td>Accra high School</td>
+                                                        <td>M</td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
+                                                        <th>Person name</th>
+                                                        <th>ID No.</th>
                                                         <th>Project name</th>
-                                                        <th>Cards generated</th>
-                                                        <th>Duration</th>
+                                                        <th>Institution name</th>
+                                                        <th>Gender</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </tfoot>
@@ -952,7 +938,9 @@
                     <!-- BEGIN Page Footer -->
                     <footer class="page-footer" role="contentinfo">
                         <div class="d-flex align-items-center flex-1 text-muted">
-                            <span class="hidden-md-down fw-700">2021 © Ghana Knowledge Bank by&nbsp;<a href='https://www.realstudiosonline.com' class='text-primary fw-500' title='Ministry of Education' target='_blank'>Ministry of Education</a></span>
+                            <span class="hidden-md-down fw-700">2021 ©  SID Card Generator
+                                <!--                                <a href='https://www.realstudiosonline.com' class='text-primary fw-500' title='Ministry of Education' target='_blank'>Ministry of Education</a>-->
+                            </span>
                         </div>
                         <div>
                             <ul class="list-table m-0">
@@ -1083,27 +1071,27 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        <nav class="shortcut-menu d-none d-sm-block">
-            <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
-            <label for="menu_open" class="menu-open-button ">
-                <span class="app-shortcut-icon d-block"></span>
-            </label>
-            <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">
-                <i class="fal fa-arrow-up"></i>
-            </a>
-            <a href="page_login.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">
-                <i class="fal fa-sign-out"></i>
-            </a>
-            <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="Full Screen">
-                <i class="fal fa-expand"></i>
-            </a>
-            <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left" title="Print page">
-                <i class="fal fa-print"></i>
-            </a>
-            <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left" title="Notepad">
-                <i class="fal fa-book"></i>
-            </a>
-        </nav>
+<!--        <nav class="shortcut-menu d-none d-sm-block">-->
+<!--            <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />-->
+<!--            <label for="menu_open" class="menu-open-button ">-->
+<!--                <span class="app-shortcut-icon d-block"></span>-->
+<!--            </label>-->
+<!--            <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">-->
+<!--                <i class="fal fa-arrow-up"></i>-->
+<!--            </a>-->
+<!--            <a href="page_login.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">-->
+<!--                <i class="fal fa-sign-out"></i>-->
+<!--            </a>-->
+<!--            <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="Full Screen">-->
+<!--                <i class="fal fa-expand"></i>-->
+<!--            </a>-->
+<!--            <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left" title="Print page">-->
+<!--                <i class="fal fa-print"></i>-->
+<!--            </a>-->
+<!--            <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left" title="Notepad">-->
+<!--                <i class="fal fa-book"></i>-->
+<!--            </a>-->
+<!--        </nav>-->
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1750,21 +1738,112 @@
         <script src="js/statistics/flot/flot.bundle.js"></script>
         <script src="js/formplugins/dropzone/dropzone.js"></script>
         <script src="js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+        <!-- Development version -->
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
             <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
         <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly&region=GH"
         async
         ></script>
         <script>
+            const button = document.querySelector('#sid-card-link');
+            const tooltip = document.querySelector('#sid-card-tooltip');
+          
+            
+      const popperInstance = Popper.createPopper(button, tooltip, {
+        modifiers: [
+          {
+            name: 'offset',
+            options: {
+              offset: [0, 8],
+            },
+          },
+        ],
+      });
+
+      function show() {
+        // Make the tooltip visible
+        tooltip.setAttribute('data-show', '');
+
+        // Enable the event listeners
+        popperInstance.setOptions({
+          modifiers: [{ name: 'eventListeners', enabled: true }],
+        });
+
+        // Update its position
+        popperInstance.update();
+      }
+
+      function hide() {
+        // Hide the tooltip
+        tooltip.removeAttribute('data-show');
+
+        // Disable the event listeners
+        popperInstance.setOptions({
+          modifiers: [{ name: 'eventListeners', enabled: false }],
+        });
+      }
+
+      const showEvents = ['mouseenter', 'focus'];
+      const hideEvents = ['mouseleave', 'blur'];
+
+      showEvents.forEach(event => {
+        button.addEventListener(event, show);
+      });
+
+      hideEvents.forEach(event => {
+        button.addEventListener(event, hide);
+      });
+
+          </script>
+        <script>
             /* demo scripts for change table color */
             /* change background */
+            $(function() {
+                $('[data-toggle="show-sid-card-tooltip"]').tooltip({
+                    html: true,
+                    
+                });
+            });
+
 
 
             $(document).ready(function()
             {
+
+
                 $('#dataTable-data-bank').dataTable(
                     
                 {
+                    initComplete: function () {
+                        var tableFiltersHTML = `   <div class="pt-4 d-flex align-items-center w-auto flex-wrap">
+                                            <div class="col-auto mb-3">Filter by</div>
+                                            <div class="col-auto mb-3 flex-grow-1">
+                                                <select class="form-control">
+                                                    <option>Year</option>
+                                                  </select>
+                                            </div>
+                                            <div class="col-auto mb-3 flex-grow-1">
+                                                <select class="form-control">
+                                                    <option>Project name</option>
+                                                  </select>
+                                            </div>
+                                            <div class="col-auto mb-3 flex-grow-1">
+                                                <select class="form-control">
+                                                    <option>Institution name</option>
+                                                  </select>
+                                            </div>
+                                            <div class="col-auto mb-3 flex-grow-1">
+                                                <select class="form-control">
+                                                    <option>Gender</option>
+                                                  </select>
+                                            </div>
+                                            
+                                        </div>`;
+
+                        $('#dataTable-data-bank_wrapper >  .row.mb-3').append(tableFiltersHTML);
+                    },
                     responsive: true,
                     columnDefs: [
                     {
@@ -1773,33 +1852,7 @@
                         orderable: false,
                         render: function(data, type, full, meta)
                         {
-
-                            /*
-                            -- ES6
-                            -- convert using https://babeljs.io online transpiler
-                            return `
-                            <div class='d-flex mt-2'>
-                            	<a href='javascript:void(0);' class='btn btn-sm btn-outline-danger mr-2' title='Delete Record'>
-                            		<i class="fal fa-times"></i> Delete Record
-                            	</a>
-                            	<a href='javascript:void(0);' class='btn btn-sm btn-outline-primary mr-2' title='Edit'>
-                            		<i class="fal fa-edit"></i> Edit
-                            	</a>
-                            	<div class='dropdown d-inline-block'>
-                            		<a href='#'' class='btn btn-sm btn-outline-primary mr-2' data-toggle='dropdown' aria-expanded='true' title='More options'>
-                            			<i class="fal fa-plus"></i>
-                            		</a>
-                            		<div class='dropdown-menu'>
-                            			<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
-                            			<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
-                            		</div>
-                            	</div>
-                            </div>`;
-                            	
-                            ES5 example below:	
-
-                            */
-                            return "\n\t\t\t\t\t\t<div class='d-flex demo'>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-success btn-icon btn-inline-block mr-1' title='Delete Record'><i class=\"fal fa-eye\"></i></a>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-warning btn-icon btn-inline-block mr-1' title='Edit'><i class=\"fal fa-edit\"></i></a>\n\t\t\t\t\t\t\t<div class='dropdown d-inline-block'>\n\t\t\t\t\t\t\t\t<a href='#' class='btn btn-sm btn-outline-danger btn-icon' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-times\"></i></a>\n\t\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+                            return "\n\t\t\t\t\t\t<div class='d-flex demo'>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-success btn-icon btn-inline-block mr-1' title='Delete Record'><i class=\"fal fa-eye\"></i></a>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-primary btn-icon btn-inline-block mr-1' title='Print'><i class=\"fal fa-print\"></i></a>\n\t\t\t\t\t\t\t<div class='dropdown d-inline-block'>\n\t\t\t\t\t\t\t\t<a href='#' class='btn btn-sm btn-outline-danger btn-icon' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-times\"></i></a>\n\t\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
                         },
                     },
                     {

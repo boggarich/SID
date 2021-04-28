@@ -1,40 +1,18 @@
-// Initialize and add the map
-/*
-function initMap() {
-    // The location of Uluru
-    const uluru = { lat: -25.344, lng: 131.036 };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(document.getElementById("google-maps-container"), {
-        zoom: 4,
-        center: uluru,
-    });
-    // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
-        position: uluru,
-        map: map,
-    });
-}
-
-initMap();*/
-
 let map;
 
 async function initMap(external) {
     //console.log(external)
-    map = new google.maps.Map(document.getElementById("google-maps-container"), {
-      center: new google.maps.LatLng(8.0236654, -0.9332576),
-      zoom: 8,
-    });
 
-    // var image = {
-    //     url: 'http://www.ssglobalsupply.com/images/location-contact.png',
-    //     // This marker is 50 pixels wide by 50 pixels high.
-    //     size: new google.maps.Size(50, 50),
-    //     // The origin for this image is (0, 0).
-    //     origin: new google.maps.Point(0, 0),
-    //     // The anchor for this image is the base of the flagpole at (0, 32).
-    //     anchor: new google.maps.Point(0, 32)
-    //   };
+    if(external) {
+        map = new google.maps.Map(document.getElementById("google-maps-container"), {
+            center: new google.maps.LatLng(8.0236654, -0.9332576),
+            zoom: 8,
+        });
+    }
+    else {
+        $('#google-maps-container').html(commonObj.btnLoader())
+    }
+
 
     const iconBase =
       "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
@@ -86,13 +64,17 @@ async function initMap(external) {
 
     const features = await external;
 
+    
+
     var infoWindowContent = [];
   
-    //console.log(features)
+    //console.log(features, "google maps")
+
     // Create markers.
     for (let i = 0; i < features.length; i++) {
 
-      infoWindowContent[i] = getInfoWindowDetails(features[i].school_name)
+      infoWindowContent[i] = getInfoWindowDetails(features[i].school_name, features[i].status, features[i].population, features[i].logo, features[i].locationName);
+
       const marker = new google.maps.Marker({
         position: features[i].position,
         icon: icons[features[i].status].icon,
@@ -100,14 +82,14 @@ async function initMap(external) {
       });
 
       var infowindow = new google.maps.InfoWindow({
-        content: features[2].school_name
+        content: features[i].school_name
       });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i){
           return function() {
               infowindow.setContent(infoWindowContent[i]);
               
-            infowindow.open(map,marker);
+              infowindow.open(map,marker);
           }
         
     })(marker, i));
@@ -118,13 +100,30 @@ async function initMap(external) {
 
   }
 
-  function getInfoWindowDetails(name, location) {
-    var contentString = '<div id="content" style="width:270px;height:100px">' +
-    '<h3 id="firstHeading" class="firstHeading">' + name + '</h3>'+
-    '<div id="bodyContent">'+
-        '<div style="float:left;width:100%">'+ location + '</div>'+
-    '</div>'+
-'</div>';
+  function getInfoWindowDetails(name, status, population, logo, locationName) {
+    //console.log(logo);
+    //console.log(population);
+    var contentString = `<div id="content" style="width:270px;height:auto;">
+    <h3 id="firstHeading" class="firstHeading">${name}</h3>
+    <div id="bodyContent">
+        <div style="float:left;width:100%">${locationName}</div>
+        <div>Status: <text class="${status} text">${commonObj.capitalizeFirstLetter(status)}</text></div>
+        <hr class="solid">
+        <div class="d-flex">
+          <div class="flex-grow-1">
+            <div>Population</div>
+            <div>SHS 1: ${population.shsOne}</div>
+            <div>SHS 2: ${population.shsTwo}</div>
+            <div>SHS 3: ${population.shsThree}</div>
+          </div>
+          <div>
+          <figure class="item-row-image">
+            <img src=https://dextraclass.com${logo}>
+          </figure>
+          </div>
+        </div>
+    </div>
+  </div>`;
     return contentString;
   }
 

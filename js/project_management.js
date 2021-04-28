@@ -7,6 +7,8 @@ let projectManagementClassObj = {
         ProjectOfficersDiv    : '#ProjectOfficersDiv',
         QualityOfficersDiv    : '#QualityOfficersDiv',
         managementPageHeader  : '#management-page-header',
+
+        //Add new Project
         newProjectName        : "#NewProjectName",
         newCardTitle          : "#NewCardTitle",
         newInstitutionType    : '#NewInstitutionType',
@@ -19,18 +21,49 @@ let projectManagementClassObj = {
         newProjectDurationStartDate : '#NewProjectDurationStartDate',
         newProjectDurationEndDate : '#NewProjectDurationEndDate',
         newCardSize           : '#NewCardSize',
+
+        //Add new Press
         newPressName          : "#NewPressName",
         newPressGpsCode       : "#NewPressGpsCode",
         newPressLocation      : "#NewPressLocation",
         newPressContactName   : "#NewPressContactName",
         newPressContactNo     : '#NewPressContactNo',
+
+
+        //Assign Institution to Project Officer
+        assignProjectOfficerSchoolNameHTML : '#AssignProjectOfficerSchoolNameHTML',
+        assignProjectOfficerNameSelect     : '#AssignProjectOfficerNameSelect',
+        assignProjectOfficerSchoolCode     : '#AssignProjectOfficerSchoolCode',
+
+        //Add Task to Project Officer Name
+        assignProjectOfficerInstSelect     : '#AssignProjectOfficerInstSelect',
+        assignProjectOfficerStartDate      : '#AssignProjectOfficerStartDate',
+        assignProjectOfficerEndDate        : '#AssignProjectOfficerEndDate',
+        assignProjectOfficerId             : '#AssignProjectOfficerId',
+
+        //Assign Print Officer to Press
+        assignPrintOfficerPressNameHTML    : '#AssignPrintOfficerPressNameHTML',
+        assignPrintOfficerNameSelect       : '#AssignPrintOfficerNameSelect',
+        assignPrintOfficerPressId          : '#AssignPrintOfficerPressId',
+        assignPrintOfficerNameSelect       : '#AssignPrintOfficerNameSelect',
+
+        //Add new school
+        newSchoolName         : '#NewSchoolName',
+        newSchoolPopulation   : '#NewSchoolPopulation'
     },
     jsData : {
         projects : 'Projects',
         schools : 'Schools',
         projectOfficers : 'Project Officers',
         printPress : 'Print Press',
-        bgImg : ''
+        bgImg : '',
+        datePickerAssignProjectOfficerStartDate : '',
+        datePickerAssignProjectOfficerEndDate : '',
+        location : {
+          lat : '',
+          lng : ''
+        }
+
     }
 }
 
@@ -39,6 +72,171 @@ class projectManagementClass {
         this.ext = external;
 
     }    
+
+
+
+    async assignOfficerToPress() {
+
+      var ids = this.ext.jsId;
+
+      var pressId = $(ids.assignPrintOfficerPressId).val();
+      var printOfficerId = $(ids.assignPrintOfficerNameSelect).val();
+
+      
+
+      if(pressId != '' && printOfficerId != '') { 
+
+        const response = await fetch('https://staging.api.desafrica.com/v1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: `
+            mutation AssignOfficerToPress($input : AssignOfficerToPressInput!) {
+                sid {
+                  assignOfficerToPress(input : $input) {
+                    id
+                    pressId
+                    printOfficerId
+                  }
+              }
+            }
+            ` ,
+            variables : {
+              "input": {
+                "pressId": pressId,
+                "printOfficerId": printOfficerId,
+              }
+            }
+        }),
+        
+        });
+
+        await response.json()
+        .then(data => {
+          console.log(data)
+          if(data.data.sid != null) {
+            toastr.success('Print Officer Assigned Successfully');
+          }
+          else {
+            toastr.error('Error: Failed to Assign Print Officer');
+          }
+          
+        });
+      
+     }
+
+
+
+      
+      
+  }
+
+
+    async addTaskToProjectOfficerName() {
+
+      var ids = this.ext.jsId;
+
+      var startDate = $(ids.assignProjectOfficerStartDate).val();
+      var endDate = $(ids.assignProjectOfficerEndDate).val();
+      var institutionId = $(ids.assignProjectOfficerInstSelect).val();
+      var projectOfficerId = +($(ids.assignProjectOfficerId).val());
+      
+      
+      if(startDate != '' && endDate != '' && institutionId != '') { 
+
+        const response = await fetch('https://staging.api.desafrica.com/v1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: `
+            mutation AssignInstitutionToPO($input : POIAssignmentInput!) {
+              sid {
+                assignInstitutionToPO(input : $input) {
+                  id
+                }
+              }
+            }
+            ` ,
+            variables : {
+              "input": {
+                "institutionId": institutionId,
+                "projectOfficerId": projectOfficerId ,
+                "endDate": endDate ,
+                "startDate": startDate
+              }
+            }
+        }),
+        
+        });
+
+        await response.json()
+        .then(data => {
+          
+          if(data.data.sid != null) {
+            toastr.success('Project Officer Assigned Successfully');
+          }
+          else {
+            toastr.error('Error: Failed to Assign Project Officer');
+          }
+          
+        });
+      
+     }
+
+
+
+      
+      
+  }
+
+    async assignInstitutionToPO() {
+        
+      var ids = this.ext.jsId;
+
+      var projectOfficerId = +($(ids.assignProjectOfficerNameSelect).val());
+      var institutionId = $(ids.assignProjectOfficerSchoolCode).val();
+      var startDate = '';
+      var endDate = '';
+
+      if(institutionId != '' && projectOfficerId != '') {
+        const response = await fetch('https://staging.api.desafrica.com/v1', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: `
+              mutation AssignInstitutionToPO($input : POIAssignmentInput!) {
+                sid {
+                  assignInstitutionToPO(input : $input) {
+                    id
+                  }
+                }
+              }
+              ` ,
+              variables : {
+                "input": {
+                  "institutionId": institutionId,
+                  "projectOfficerId": projectOfficerId,
+                  "endDate": "01/03/2020",
+                  "startDate": "01/03/2020"
+                }
+              }
+          }),
+          });
+    
+          await response.json()
+          .then(data => {
+            console.log(data)
+            if(data.data.sid != null) {
+              toastr.success('Project Officer Assigned Successfully');
+            }
+            else {
+              toastr.error('Error: Failed to Assign Project Officer');
+            }
+            
+          });
+      }
+
+
+      
+      
+  }
 
     async getSchools() {
         
@@ -52,6 +250,7 @@ class projectManagementClass {
               pageNumber: 1
             }){
               schools {
+                schoolCode
                 schoolName
                 population
                 projectOfficers {
@@ -112,6 +311,7 @@ class projectManagementClass {
         query getProjectOfficers($input : GetProjectOfficersInput!) {
             getProjectOfficers(input: $input){
               projectOfficers {
+                id
                 fullName
                 phone
                 projectId
@@ -142,6 +342,35 @@ class projectManagementClass {
         
     }
 
+    async getPrintOfficers() {
+        
+      const response = await fetch('https://staging.api.desafrica.com/v1', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: `
+          query getPrintOfficers($input : GetPrintOfficersInput!) {
+            getPrintOfficers(input : $input) {
+              printOfficers {
+                id
+                fullName
+              }
+            }
+          }
+          ` ,
+          variables : {
+              "input":  {
+                  "perPage": 20,
+                  "pageNumber": 0
+              }
+          }
+      }),
+      });
+
+      return await response.json();
+    
+      
+  }
+
     async getPresses() {
         
         const response = await fetch('https://staging.api.desafrica.com/v1', {
@@ -151,7 +380,13 @@ class projectManagementClass {
         query getPresses($input : GetPressesInput!) {
             getPresses(input: $input){
               presses {
+                id
                 name
+                officers {
+                  printOfficers {
+                    fullName
+                  }
+                }
               }
             }
           }
@@ -176,14 +411,14 @@ class projectManagementClass {
 
         var pressName = $(ids.newPressName).val();
         var gpsCode = $(ids.newPressGpsCode).val();
-        var location = $(ids.newPressLocation).val();
+
+        var lat = jsData.location.lat;
+        var lng = jsData.location.lng;
+
         var contactName = $(ids.newPressContactName).val();
         var contactNo = $(ids.newPressContactNo).val();
 
-
-        //console.log(jsData.bgImg)
-
-        if(pressName != '' && gpsCode != '' && location != '' && contactName != '' && contactNo != '') {
+        if(pressName != '' && gpsCode != '' && lat != '' && lng != '' && contactName != '' && contactNo != '') {
             
             const response = await fetch('https://staging.api.desafrica.com/v1', {
                 method: 'POST',
@@ -203,8 +438,8 @@ class projectManagementClass {
                             "name" : `${pressName}`,
                             "gpsCode" : `${gpsCode}`,
                             "location" :{
-                                "lat" : '',
-                                "lng" : '',
+                                "lat" : `${lat}`,
+                                "lng" : `${lng}`,
                             },
                             "contactName" : `${contactName}`,
                             "contactPhone" : `${contactNo}`,
@@ -213,8 +448,18 @@ class projectManagementClass {
                 }),
                 });
         
-                var res = await response.json();
-                console.log(res)
+                await response.json()
+                .then(data => {
+                  console.log(data)
+                  if(data.data.sid != null) {
+                    toastr.success('Press Added Successfully');
+                  }
+                  else {
+                    toastr.error('Error: Failed to Add Press');
+                  }
+                  
+                });
+                
         }
         else {
             try {

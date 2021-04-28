@@ -41,10 +41,17 @@ window.onload =  function() {
                   schools{
                       name
                       status
+                      logo
+                      population {
+                        shsOne
+                        shsTwo
+                        shsThree
+                      }
                       location {
                           lat
                           lng
                       }
+                      locationName
                   }
                   totalSchools
                 }}`,
@@ -54,7 +61,7 @@ window.onload =  function() {
     }
 
     webSocket.addEventListener('message', function(event) {
-
+      //alert('new websocket message')
       const data = JSON.parse(event.data)
 
       switch (data.type) {
@@ -70,6 +77,8 @@ window.onload =  function() {
           break
         }
         case GQL.DATA : {
+            //console.log("websocket: GetProgress", data.payload);
+            
             const school_data = data.payload.data.getProgress.schools;
             const controlCenterKeys = data.payload.data.getProgress.keys;
             const full = data.payload.data.getProgress;
@@ -79,6 +88,9 @@ window.onload =  function() {
               position: new google.maps.LatLng(data.location.lat, data.location.lng),
               status: data.status,
               school_name: data.name,
+              population: data.population,
+                logo: data.logo,
+                locationName : data.locationName
             }));
 
             //console.log(map_features)
@@ -90,7 +102,8 @@ window.onload =  function() {
   });
 
   webSocket.onclose = function(){
-    alert("connection closed")
+    // alert("connection closed")
+      controlCenterObj.getSchools();
   };
 
   controlCenterObj.getSchools();
