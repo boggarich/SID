@@ -11,9 +11,17 @@ let controlCenterClassObj = {
         submittedSpan : "#SubmittedSpan",
         submittedProgress : "#SubmittedProgress",
         overallCompletion : "#OverallCompletion",
-        activeOfficers : "#ActiveOfficers"
+        activeOfficers : "#ActiveOfficers",
+        
 
         //Add app Release
+        addAppReleaseFile     : '#AddAppReleaseFile',
+        addAppReleaseDate     : '#AddAppReleaseDate',
+        addAppVersionName     : '#AddAppVersionName',
+        addAppDownloadUrl     : '#AddAppDownloadUrl',
+        addAppReleaseBtn      : '#AddAppReleaseBtn'
+        
+
 
     },
     jsAttr : {
@@ -28,6 +36,78 @@ let controlCenterClassObj = {
 class controlCenterClass {
     constructor(external) {
         this.ext = external;
+    }
+
+    async addAppRelease(event) {
+
+        event.preventDefault();
+
+        var ids = this.ext.jsId;
+        
+  
+        var file = $(ids.addAppReleaseFile).val();
+        var date = $(ids.addAppReleaseDate).val();
+        var versionName = $(ids.addAppVersionName).val();
+        var downloadUrl = $(ids.addAppDownloadUrl).val();
+        
+
+        if(file != '' && date != '' && versionName != '' &&  downloadUrl != '' ) {
+            
+            
+
+            const response = await fetch('https://staging.api.desafrica.com/v1', {
+                method: 'POST',
+                headers: { 
+                  'Content-Type': 'application/json', 
+                  'Accept' : 'application/json, text/plain, */*',
+                  
+                },
+                body: JSON.stringify({ query: `
+                mutation AddAppRelease($input :  AddAppReleaseInput!) {
+                    sid {
+                      addAppRelease(input: $input) {
+                        id
+                        file
+                        date
+                        versionName
+                        downloadUrl
+                      }
+                    }
+                  }
+                    ` ,
+                    variables : {
+                        "input":  {
+                            "file" : file,
+                            "date" : date,
+                            "versionName" : versionName,
+                            "downloadUrl" : downloadUrl,
+                        }
+                    }
+                }),
+                });
+        
+  
+                await response.json()
+                .then(data => {
+                  console.log(data)
+                  if(data.data.sid != null) {
+                    commonObj.toastrSuccess('App release added successfully');
+                  }
+                  else {
+                    commonObj.toastrError('Error: Failed to add app release');
+                  }
+                  
+                });
+        }
+        else {
+            try {
+                throw new Error('Check all fields are provided!')
+              } catch (e) {
+                console.error(e.name + ': ' + e.message)
+              }
+              
+        }
+        
     }
 
     async getSchools() {

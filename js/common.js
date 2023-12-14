@@ -1,4 +1,34 @@
 class commonClass {
+    
+    async getProjects() {
+        
+        const response = await fetch('https://staging.api.desafrica.com/v1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: `
+        query getProjects {
+            getProjects (input: {
+              perPage: 1
+              pageNumber: 0
+            }) {
+              projects {
+                id
+                name
+                startDate
+              }
+              total
+            }
+          }
+            ` ,
+            variables : {
+                
+            }
+        }),
+        });
+
+        return await response.json();
+        
+    }
 
     async getInstitutionType() {
         
@@ -35,6 +65,27 @@ class commonClass {
 
         return await response.json();
         
+    }
+
+    btnDesEnb(element, text="", action="des") {
+        
+        if(action == "des") {
+            $(element).prop( "disabled", true );
+            $(element).html(`<div class="spinner-border spinner-border-sm text-light" role="status"><span class="sr-only">Loading...</span></div>`);
+        }
+
+        if(action == "enb") {
+            $(element).html(text);
+            $(element).prop( "disabled", false );
+        }
+    }
+
+    toastrError(message) {
+        toastr.error(message);
+    }
+
+    toastrSuccess(message) {
+        toastr.success(message);
     }
 
     createSelectOptions(element, objData) {

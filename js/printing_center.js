@@ -1,6 +1,11 @@
 let printCenterClassObj = {
     jsId : {
         printJobsCompleted : '#PrintJobsCompleted',
+        printPanelPageSubheader : '#PrintPanelPageSubheader',
+        printPanelPageBreadcrumb : '#PrintPanelPageBreadcrumb',
+        printPanelPageBreadcrumbDate : '#PrintPanelPageBreadcrumbDate',
+        printPanelHTML : '#PrintPanelHTML',
+        jobPillPanelHTML : '#JobPillPanelHTML'
     },
     jsClass : {
         jobPillDivClass : '.badge-pill-wrapper',
@@ -19,7 +24,15 @@ class printCenterClass {
         this.ext = external;
     }
 
+    getJobDetails() {
+        var ids = this.ext.jsId;
 
+        $(ids.printPanelPageSubheader).fadeOut(500);
+        $(ids.printPanelPageBreadcrumb).fadeIn(500);
+        $(ids.printPanelPageBreadcrumbDate).fadeOut(500);
+        $(ids.printPanelHTML).fadeOut(500);
+        $(ids.jobPillPanelHTML).fadeIn(500);
+    }
 
     updateJobStatusToCompleted(event) {
         var ids = this.ext.jsId;

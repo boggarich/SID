@@ -158,6 +158,12 @@
                                 </a>
                             </li>
                             <li class="">
+                                <a href="card_generator.html" title="Blank Project" data-filter-tags="blank page">
+                                    <i class="fal fa-credit-card"></i>
+                                    <span class="nav-link-text" data-i18n="nav.blankpage">Card generator</span>
+                                </a>
+                            </li>
+                            <li class="">
                                 <a href="management.html" title="Blank Project" data-filter-tags="blank page">
                                     <i class="fal fa-id-card"></i>
                                     <span class="nav-link-text" data-i18n="nav.blankpage">Management</span>
@@ -831,246 +837,291 @@
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
 
-                        <ol class="breadcrumb page-breadcrumb">
+                        <ol class="breadcrumb page-breadcrumb" id="PrintPanelPageBreadcrumbDate">
                             <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
                         </ol>
                         
-                        <div class="subheader">
+                        <div class="subheader" id="PrintPanelPageSubheader">
                             <h1 class="subheader-title">
                                 <i class='subheader-icon fal fa-print'></i> Printing Center
-                                <!--<small>
-                                    Insert page description or punch line
-                                </small>
-                                -->
+                                
                             </h1>
-                            <!-- 
-                            Right content on content header
-                            A nice area to add graphs or buttons
-                            <div class="subheader-block">
-                                Right Subheader Block
-                            </div>
-                             -->
+                           
                         </div>
-                        <!--
-                        <div class="alert alert-primary">
-                            <div class="d-flex flex-start w-100">
-                                <div class="mr-2 hidden-md-down">
-                                    <span class="icon-stack icon-stack-lg">
-                                        <i class="base base-6 icon-stack-3x opacity-100 color-primary-500"></i>
-                                        <i class="base base-10 icon-stack-2x opacity-100 color-primary-300 fa-flip-vertical"></i>
-                                        <i class="ni ni-blog-read icon-stack-1x opacity-100 color-white"></i>
-                                    </span>
-                                </div>
-                                <!--
-                                <div class="d-flex flex-fill">
-                                    <div class="flex-fill">
-                                        <span class="h5">Pro Tip!</span>
-                                        <p>
-                                            If you don't know where to start, this is a good page to start your application. It comes with the basics to get you started. Contains a good inline documentation and waypoints to guide you with your project. Use this area of the page as an attention grabber. Users are likely to respond or pay attention when you involve a color icon along with your information (as displayed here on the left).
-                                        </p>
-                                        <p class="m-0">
-                                            Follow a slogal with a useful link or call to action <a href="#" target="_blank">Call to action >></a>
-                                        </p>
-                                    </div>
-                                </div>
+
+                        
+                            <div class="demo-v-spacing mb-5 print-panel-page-breadcrumb"  id="PrintPanelPageBreadcrumb"  style="display: none;">
+                                
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="printing.html">Printing panel</a>
+                                    </li>
+                                    
+                                    <li class="breadcrumb-item active">Job data table</li>
+                                </ol>
                                 
                             </div>
-                        </div>
-                        -->
+                        
+                        
                         <!-- Your main content goes below here: -->
- 
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Press management
-                                        </h2>
-                                        <div class="panel-toolbar">
-                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <div id="PrintPanelHTML">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div id="panel-1" class="panel">
+                                        <div class="panel-hdr">
+                                            <h2>
+                                                Press management
+                                            </h2>
+                                            <div class="panel-toolbar">
+                                                <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                                <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content row">
-
-                                           <div class="col-12">
-                                            <table id="dataTable-printing-center" class="table table-bordered table-hover table-striped w-100">
-                                                <thead>
-                                                    <tr>
-                                                        <th>School Name</th>
-                                                        <th>Print pending</th>
-                                                        <th>Print complete</th>
-                                                        <th>Press</th>
-                                                        <th>Assigned Q.O.</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Accra High School<br><small class="text-muted">Submit date 01-03-2021</small></td>
-                                                        <td>
-                                                            <div class="d-grid grid-col-3 grid print-jobs-pending" id="PrintJobsPending">
-                                            
-                                                                    <div class="badge-pill-wrapper" draggable="true" ondragstart="printCenterObj.onDragStart(event)" ondragend="" data-job-id="1">
-                                                                        <span class="badge badge-pill project-status job-pill started text-white"  onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 3')" onclick="printCenterObj.download(event)" data-innerText="Job 3">Job 3</span>
-                                                                    </div>
-                                                                    <div class="badge-pill-wrapper" draggable="true">
-                                                                        <span class="badge badge-pill project-status job-pill started text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 4')" onclick="printCenterObj.download(event)" data-innerText="Job 4">Job 4</span>
-                                                                    </div>
-                                                                    <div class="badge-pill-wrapper" draggable="true">
-                                                                        <span class="badge badge-pill project-status job-pill started text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 5')" onclick="printCenterObj.download(event)" data-innerText="Job 5">Job 5</span>
-                                                                    </div>
-                                                                    <div class="badge-pill-wrapper" draggable="true">
-                                                                        <span class="badge badge-pill project-status job-pill started text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 6')" onclick="printCenterObj.download(event)" data-innerText="Job 6">Job 6</span>
-                                                                    </div>
-                                                                    <div class="badge-pill-wrapper" draggable="true">
-                                                                        <span class="badge badge-pill project-status job-pill started text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, 'Download')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 7')" onclick="printCenterObj.download(event)" data-innerText="Job 7">Job 7</span>
-                                                                    </div>
-
-                                                                
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="d-grid grid-col-3 grid print-jobs-completed dragdropzone" id="PrintJobsCompleted" ondragover="printCenterObj.onDragOver(event)" ondrop="printCenterObj.updateJobStatusToCompleted(event)">
-                                                                <div class="badge-pill-wrapper">
-                                                                    <span class="badge badge-pill project-status job-pill delivered text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, '01.03.21')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 1')">Job 1</span>
-                                                                </div>
-                                                                <div class="badge-pill-wrapper">
-                                                                    <span class="badge badge-pill project-status job-pill delivered text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, '01.03.21')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 2')">Job 2</span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>Lema Press<br>
-                                                            <small class="text-muted">Greater Accra</small>
-                                                        </td>
-                                                        <td>
-                                                            Kofi Baboni<br>
-                                                            <small class="text-muted">0277001122</small>
-                                                        </td>
-                                                    </tr>
-                                                    
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>School Name</th>
-                                                        <th>Print pending</th>
-                                                        <th>Print complete</th>
-                                                        <th>Press</th>
-                                                        <th>Assigned Q.O.</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-
-                                           </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Press report
-                                        </h2>
-                                        <div class="panel-toolbar">
-                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                                        </div>
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content row">
-                                            <div class="col-12">
+                                        <div class="panel-container show">
+                                            <div class="panel-content row">
+    
+                                               <div class="col-12">
                                                 <table id="dataTable-printing-center" class="table table-bordered table-hover table-striped w-100">
                                                     <thead>
                                                         <tr>
+                                                            <th>School Name</th>
+                                                            <th>Print pending</th>
+                                                            <th>Print complete</th>
                                                             <th>Press</th>
-                                                            <th>Downloaded</th>
-                                                            <th>Printed</th>
-                                                            <th>Delivered</th>
                                                             <th>Assigned Q.O.</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Lema Press<br><small class="text-muted">0244112233</small></td>
-                                                            <td>125,000<br><small class="text-muted">500 Jobs</small></td>
-                                                            <td>125,000<br><small class="text-muted">500 Jobs</small></td>
-                                                            <td>125,000<br><small class="text-muted">500 Jobs</small></td>
-                                                            <td>Kofi baboni<br><small class="text-muted">0244112233</small></td>
+                                                            <td>Accra High School<br><small class="text-muted">Submit date 01-03-2021</small></td>
+                                                            <td>
+                                                                <div class="d-grid grid-col-3 grid print-jobs-pending" id="PrintJobsPending">
+                                                
+                                                                        <div class="badge-pill-wrapper" draggable="true" ondragstart="printCenterObj.onDragStart(event)" ondragend="" data-job-id="1">
+                                                                            <span class="badge badge-pill project-status job-pill started text-white"  onclick="printCenterObj.getJobDetails()" data-innerText="Job 3">Job 3</span>
+                                                                        </div>
+                                                                        <div class="badge-pill-wrapper" draggable="true">
+                                                                            <span class="badge badge-pill project-status job-pill started text-white"  onclick="printCenterObj.getJobDetails()" data-innerText="Job 4">Job 4</span>
+                                                                        </div>
+                                                                        <div class="badge-pill-wrapper" draggable="true">
+                                                                            <span class="badge badge-pill project-status job-pill started text-white" onclick="printCenterObj.getJobDetails()" data-innerText="Job 5">Job 5</span>
+                                                                        </div>
+                                                                        <div class="badge-pill-wrapper" draggable="true">
+                                                                            <span class="badge badge-pill project-status job-pill started text-white" onclick="printCenterObj.getJobDetails()" data-innerText="Job 6">Job 6</span>
+                                                                        </div>
+                                                                        <div class="badge-pill-wrapper" draggable="true">
+                                                                            <span class="badge badge-pill project-status job-pill started text-white" onclick="printCenterObj.getJobDetails()" data-innerText="Job 7">Job 7</span>
+                                                                        </div>
+    
+                                                                    
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-grid grid-col-3 grid print-jobs-completed dragdropzone" id="PrintJobsCompleted" ondragover="printCenterObj.onDragOver(event)" ondrop="printCenterObj.updateJobStatusToCompleted(event)">
+                                                                    <div class="badge-pill-wrapper">
+                                                                        <span class="badge badge-pill project-status job-pill delivered text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, '01.03.21')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 1')">Job 1</span>
+                                                                    </div>
+                                                                    <div class="badge-pill-wrapper">
+                                                                        <span class="badge badge-pill project-status job-pill delivered text-white" onmouseover="printCenterObj.changeInnerHtmlByEvent(event, '01.03.21')" onmouseout="printCenterObj.changeInnerHtmlByEvent(event, 'Job 2')">Job 2</span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>Lema Press<br>
+                                                                <small class="text-muted">Greater Accra</small>
+                                                            </td>
+                                                            <td>
+                                                                Kofi Baboni<br>
+                                                                <small class="text-muted">0277001122</small>
+                                                            </td>
                                                         </tr>
                                                         
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>School Name</th>
+                                                            <th>Print pending</th>
+                                                            <th>Print complete</th>
+                                                            <th>Press</th>
+                                                            <th>Assigned Q.O.</th>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
+    
+                                               </div>
                                             </div>
-                                            
                                         </div>
                                     </div>
-                                    <table id="dataTable-printing-center" class="mb-0 table table-bordered table-hover table-striped w-100">
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <div class="mr-3 js-easy-pie-chart percentage-submitted color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="75" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
-                                                        <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                            <span class="js-percent d-block text-dark"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div>% of total <br>Submitted</div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center  flex-wrap">
-                                                    <div class="mr-3 js-easy-pie-chart percentage-downloaded color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="36" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
-                                                        <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                            <span class="js-percent d-block text-dark"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div>% of total <br>Downloaded</div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center  flex-wrap">
-                                                    <div class="mr-3 js-easy-pie-chart percentage-printed color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="23" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
-                                                        <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                            <span class="js-percent d-block text-dark"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div>% of total <br>Printed</div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center  flex-wrap">
-                                                    <div class="mr-3 js-easy-pie-chart percentage-delivered color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="79" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
-                                                        <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                            <span class="js-percent d-block text-dark"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div>% of total <br>Delivered</div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Card Artwork preview
-                                        </h2>
-                                        <div class="panel-toolbar">
-                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+    
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div id="panel-1" class="panel">
+                                        <div class="panel-hdr">
+                                            <h2>
+                                                Press report
+                                            </h2>
+                                            <div class="panel-toolbar">
+                                                <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                                <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                            </div>
+                                        </div>
+                                        <div class="panel-container show">
+                                            <div class="panel-content row">
+                                                <div class="col-12">
+                                                    <table id="dataTable-printing-center" class="table table-bordered table-hover table-striped w-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Press</th>
+                                                                <th>Downloaded</th>
+                                                                <th>Printed</th>
+                                                                <th>Delivered</th>
+                                                                <th>Assigned Q.O.</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Lema Press<br><small class="text-muted">0244112233</small></td>
+                                                                <td>125,000<br><small class="text-muted">500 Jobs</small></td>
+                                                                <td>125,000<br><small class="text-muted">500 Jobs</small></td>
+                                                                <td>125,000<br><small class="text-muted">500 Jobs</small></td>
+                                                                <td>Kofi baboni<br><small class="text-muted">0244112233</small></td>
+                                                            </tr>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <table id="dataTable-printing-center" class="mb-0 table table-bordered table-hover table-striped w-100">
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <div class="mr-3 js-easy-pie-chart percentage-submitted color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="75" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
+                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                <span class="js-percent d-block text-dark"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div>% of total <br>Submitted</div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center  flex-wrap">
+                                                        <div class="mr-3 js-easy-pie-chart percentage-downloaded color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="36" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
+                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                <span class="js-percent d-block text-dark"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div>% of total <br>Downloaded</div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center  flex-wrap">
+                                                        <div class="mr-3 js-easy-pie-chart percentage-printed color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="23" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
+                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                <span class="js-percent d-block text-dark"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div>% of total <br>Printed</div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center  flex-wrap">
+                                                        <div class="mr-3 js-easy-pie-chart percentage-delivered color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="79" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
+                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                <span class="js-percent d-block text-dark"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div>% of total <br>Delivered</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div id="panel-1" class="panel">
+                                        <div class="panel-hdr">
+                                            <h2>
+                                                Card Artwork preview
+                                            </h2>
+                                            <div class="panel-toolbar">
+                                                <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                                <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                            </div>
+                                        </div>
+                                        <div class="panel-container show">
+                                            <div class="panel-content">
+                                                
+                                                <figure>
+                                                    <img src="img/SID_card_Sample.png" class="w-100">
+                                                </figure>
+                                            </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="row" id="JobPillPanelHTML"  style="display: none;">
+                            <div class="col-xl-12">
+                                <div id="panel-1" class="panel">
+                                    
                                     <div class="panel-container show">
-                                        <div class="panel-content">
-                                            
-                                            <figure>
-                                                <img src="img/SID_card_Sample.png" class="w-100">
-                                            </figure>
+                                        <div class="panel-content row">
+
+                                           <div class="col-12">
+                                               <button class="btn btn-outline-primary mb-3" id="PrintPanelGoBackBtn">
+                                                   <span class="icon"><i class="fal fa-arrow-left"></i></span>
+                                                   Go Back
+                                               </button>
+                                            <table id="dataTable-job" class="table table-bordered table-hover table-striped w-100">
+                                                <thead class="dataTable-project-officers-table-head">
+                                                    <tr>
+                                                        <th>S/N</th>
+                                                        <th>Card ID No.</th>
+                                                        <th>Full name</th>
+                                                        <th>School name</th>
+                                                        <th>Attribute</th>
+                                                        <th>Photo</th>
+                                                        <th>QR</th>
+                                                        <th>Bio</th>
+                                                        <th>G.Card</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>2015654520</td>
+                                                        <td>Kofi Omane</td>
+                                                        <td>Accra High School</td>
+                                                        <td>JHS 1</td>
+                                                        <td><a href="#" class="underline">/url</a></td>
+                                                        <td><a href="#" class="underline">/url</a></td>
+                                                        <td>Yes</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>S/N</th>
+                                                        <th>Card ID No.</th>
+                                                        <th>Full name</th>
+                                                        <th>School name</th>
+                                                        <th>Attribute</th>
+                                                        <th>Photo</th>
+                                                        <th>QR</th>
+                                                        <th>Bio</th>
+                                                        <th>G.Card</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1900,6 +1951,105 @@
 
             $(document).ready(function()
             {
+
+                $('#PrintPanelGoBackBtn').on('click', function() {
+                    $('#PrintPanelPageSubheader').fadeIn(500);
+        $('#PrintPanelPageBreadcrumb').fadeOut(500);
+        $('#PrintPanelPageBreadcrumbDate').fadeIn(500);
+        $('#PrintPanelHTML').fadeIn(500);
+        $('#JobPillPanelHTML').fadeOut(500);
+                    
+                });
+
+                $('#dataTable-job').dataTable(
+                {
+                    responsive: true,
+                    initComplete: function() {
+                        $('#DataReceivedForJobName').html(`
+                        <div><strong>Data received for Job name</strong></div>
+                        <div class="row">
+                                
+                                <div class="col-lg-6">
+                                    
+                                    <div>Date received: Monday, February 1, 2021</div>
+                                    <div>Serial start: 0001</div>
+                                    <div>Serial End: 0100</div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div>Institution: Accra High school</div>
+                                    <div>Project officer: <a href="#" class="underline" data-toggle="tooltip" title="<img src='/img/DES_Logo.png'>" html="true">Kofi Baboni</a></div>
+                                    <div>Device ID: JKB1540216042</div>
+                                    
+                                </div>
+                            </div>`);
+                    },
+                    "lengthChange": false,
+                    "paging": false,
+                    "info": false,
+                    "dom" : "<'row align-items-end '<'col-lg-6'<'#DataReceivedForJobName.col-lg-12'>><'col-lg-6 d-flex justify-content-end'f>>",
+                    columnDefs: [
+                        {
+                            targets: -1,
+                        render: function(data, type, full, meta) {
+                            return "\n\t\t\t\t\t\t<div class='d-flex demo'>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-success btn-icon btn-inline-block mr-1' title='Delete Record'><i class=\"fal fa-eye\"></i></a>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-warning btn-icon btn-inline-block mr-1' title='Edit'><i class=\"fal fa-edit btn-white-icon\"></i></a>\n\t\t\t\t\t\t\t<div class='dropdown d-inline-block'>\n\t\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+                        }
+                        },
+                    { 
+                        
+                        // targets: 3,
+                        render: function(data, type, full, meta)
+                        {
+                            var badge = {
+                                1:
+                                {
+                                    'title': 'Started',
+                                    'class': 'project-status started text-white'
+                                },
+                                2:
+                                {
+                                    'title': 'Delivered',
+                                    'class': 'badge-success'
+                                },
+                                3:
+                                {
+                                    'title': 'Canceled',
+                                    'class': 'badge-secondary'
+                                },
+                                4:
+                                {
+                                    'title': 'Attempt #1',
+                                    'class': 'bg-danger-100 text-white'
+                                },
+                                5:
+                                {
+                                    'title': 'Attempt #2',
+                                    'class': 'bg-danger-300 text-white'
+                                },
+                                6:
+                                {
+                                    'title': 'Failed',
+                                    'class': 'badge-danger'
+                                },
+                                7:
+                                {
+                                    'title': 'Attention!',
+                                    'class': 'badge-primary'
+                                },
+                                8:
+                                {
+                                    'title': 'In Progress',
+                                    'class': 'badge-success'
+                                },
+                            };
+                            if (typeof badge[data] === 'undefined')
+                            {
+                                return data;
+                            }
+                            return '<span class="badge ' + badge[data].class + ' badge-pill">' + badge[data].title + '</span><br>';
+                        },
+                    }],
+                })
+
                 $('#dataTable-printing-center').dataTable(
                 {
                     responsive: true,

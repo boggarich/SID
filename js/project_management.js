@@ -7,6 +7,7 @@ let projectManagementClassObj = {
         ProjectOfficersDiv    : '#ProjectOfficersDiv',
         QualityOfficersDiv    : '#QualityOfficersDiv',
         managementPageHeader  : '#management-page-header',
+        CreateProjectOfficerBtn : '#CreateProjectOfficerBtn',
 
         //Add new Project
         newProjectName        : "#NewProjectName",
@@ -20,7 +21,8 @@ let projectManagementClassObj = {
         newQrCode             : "#NewQrCode",
         newProjectDurationStartDate : '#NewProjectDurationStartDate',
         newProjectDurationEndDate : '#NewProjectDurationEndDate',
-        newCardSize           : '#NewCardSize',
+        newProjectCardSize    : '#NewProjectCardSize',
+        newProjectCardBackImg : '#NewProjectCardBackImg',
 
         //Add new Press
         newPressName          : "#NewPressName",
@@ -49,20 +51,36 @@ let projectManagementClassObj = {
 
         //Add new school
         newSchoolName         : '#NewSchoolName',
-        newSchoolPopulation   : '#NewSchoolPopulation'
+        newSchoolPopulation   : '#NewSchoolPopulation',
+
+        //Add new Project Officer
+        newProjectOfficerName                       : '#NewProjectOfficerName',
+        newProjectOfficerAssignedProject            : '#NewProjectOfficerAssignedProject',
+        newProjectOfficerAssignedProjectLocation    : '#NewProjectOfficerAssignedProjectLocation',
+        newProjectOfficerAssignedProjectIdOne       : '#NewProjectOfficerAssignedProjectIdOne',
+        newProjectOfficerAssignedProjectIdTwo       : '#NewProjectOfficerAssignedProjectIdTwo',
+        newProjectOfficerMobileNo                   : '#NewProjectOfficerMobileNo',
+        newProjectOfficerPassword                   : '#NewProjectOfficerPassword',
+        newProjectOfficerConfirmPassword            : '#NewProjectOfficerConfirmPassword',
+        newProjectOfficerResidentialAddress         : '#NewProjectOfficerResidentialAddress',
+        newProjectOfficerIDType                     : '#NewProjectOfficerIDType',
+        newProjectOfficerIDNo                       : '#NewProjectOfficerIDNo',
+        newProjectOfficerIDExpiryDate               : '#NewProjectOfficerIDExpiryDate',
+        newProjectOfficerIdCardImg                  : '#NewProjectOfficerIdCardImg'
     },
     jsData : {
-        projects : 'Projects',
-        schools : 'Schools',
-        projectOfficers : 'Project Officers',
-        printPress : 'Print Press',
-        bgImg : '',
+        projects                : 'Projects',
+        schools                 : 'Schools',
+        projectOfficers         : 'Project Officers',
+        printPress              : 'Print Press',
+        bgImg                   : '',
         datePickerAssignProjectOfficerStartDate : '',
         datePickerAssignProjectOfficerEndDate : '',
         location : {
           lat : '',
           lng : ''
-        }
+        },
+        
 
     }
 }
@@ -73,7 +91,98 @@ class projectManagementClass {
 
     }    
 
+    async addProjectOfficer() {
+        
+      var ids = this.ext.jsId;
+      var jsData = this.ext.jsData;
 
+      var fullName = $(ids.newProjectOfficerName).val();
+      //var projectId = $(ids.newProjectOfficerAssignedProjectIdOne).val() + $(ids.newProjectOfficerAssignedProjectIdTwo).val();
+      var projectId = $(ids.newProjectOfficerAssignedProject).val();
+      var phone = $(ids.newProjectOfficerMobileNo).val();
+      var password = $(ids.newProjectOfficerPassword).val();
+      var confirmPass = $(ids.newProjectOfficerConfirmPassword).val();
+      var residentialAddress = $(ids.newProjectOfficerResidentialAddress).val();
+      var photoId = $(ids.newProjectOfficerIDType).val();
+      var photoIdNumber = $(ids.newProjectOfficerIDNo).val();
+      var photoIdExpiry = $(ids.newProjectOfficerIDExpiryDate).val();
+      var idCardImg = $(ids.newProjectOfficerIdCardImg).val();
+
+      var profilePic = "";
+      
+      var passwordValidation = password.match(/^[0-9]{5}$/g);
+
+      if(passwordValidation == null) {
+        commonObj.toastrError('Error: Enter 5-digit passcode');
+        return;
+       }
+     
+
+      if(password != confirmPass) {
+        commonObj.toastrError('Error: Passwords don\'t match');
+        return;
+      }
+
+      
+
+      if(fullName != '' && projectId != '' && phone != '' &&  password != '' && residentialAddress != '' && photoId != '' && photoIdNumber != '' && photoIdExpiry != '' && idCardImg != '') {
+          
+
+          const response = await fetch('https://staging.api.desafrica.com/v1', {
+              method: 'POST',
+              headers: { 
+                'Content-Type': 'application/json', 
+                'Accept' : 'application/json, text/plain, */*',
+              },
+              body: JSON.stringify({ query: `
+              mutation AddProjectOfficer($input :  AddProjectOfficerInput!) {
+                  sid {
+                    addProjectOfficer(input: $input) {
+                      id
+                    }
+                  }
+                }
+                  ` ,
+                  variables : {
+                      "input":  {
+                          "fullName" : fullName,
+                          "projectId" : projectId,
+                          "phone" : phone,
+                          "password" : password,
+                          "residentialAddress" : residentialAddress,
+                          "photoId" : photoId,
+                          "photoIdNumber" : photoIdNumber,
+                          "photoIdExpiry" : photoIdExpiry,
+                          "idCardImg" : idCardImg,
+                          "profilePic" : profilePic
+                      }
+                  }
+              }),
+              });
+      
+
+              await response.json()
+              .then(data => {
+                console.log(data)
+                if(data.data.sid != null) {
+                  toastr.success('Project Officer Added Successfully');
+                }
+                else {
+                  toastr.error('Error: Failed to Add Project Officer');
+                }
+                
+              });
+      }
+      else {
+          try {
+              throw new Error('Check all fields are provided!')
+            } catch (e) {
+              console.error(e.name + ': ' + e.message)
+            }
+            
+      }
+      
+  }
 
     async assignOfficerToPress() {
 
@@ -480,17 +589,23 @@ class projectManagementClass {
 
         var projectName = $(ids.newProjectName).val();
         var cardTitle = $(ids.newCardTitle).val();
-        var institutionType = $(ids.newInstitutionType);
+        var institutionType = $(ids.newInstitutionType).val();
         var startDate = $(ids.newProjectDurationStartDate).val();
-        var endDate = $(ids.newProjectDurationEndDate);
-        var cardSize = $(ids.cardSize).val();
+        var endDate = $(ids.newProjectDurationEndDate).val();
+        var cardSize = $(ids.newProjectCardSize).val();
         var firstName = $(ids.newFirstName).prop("checked");
         var secondName = $(ids.newSecondName).prop("checked");
         var middleName = $(ids.newMiddleName).prop("checked");
+        var issueDate = $(ids.newIssueDate).prop("checked");
+        var idNo = $(ids.newIdNo).prop("checked");
+        var qrCode = $(ids.newQrCode).prop("checked");
+    
 
-        
+        var bgImg = $(ids.newProjectCardBackImg).val();
 
-        if(projectName != '' && cardTitle != '' && startDate != '' && endDate != '' && cardSize != '') {
+      
+
+        if(projectName != '' && cardTitle != '' && startDate != '' && endDate != '' && cardSize != '' && bgImg != '') {
            
             const response = await fetch('https://staging.api.desafrica.com/v1', {
                 method: 'POST',
@@ -499,9 +614,9 @@ class projectManagementClass {
                   'Accept' : 'application/json, text/plain, */*',
                 },
                 body: JSON.stringify({ query: `
-                mutation AddProject($input :  AddProjectInput!, $BgImg : Upload!) {
+                mutation AddProject($input :  AddProjectInput!) {
                     sid {
-                      addProject(input: $input, BgImg: $BgImg) {
+                      addProject(input: $input) {
                         id
                         name
                         cardTitle
@@ -525,28 +640,37 @@ class projectManagementClass {
                             "name" : projectName,
                             "initials" : "AQ",
                             "year" : "2020",
-                            "closure" : true,
+                            "closure" : false,
                             "cardTitle" : cardTitle,
                             "fields" : {
                                 "firstName" : firstName,
                                 "lastName" : secondName,
                                 "middleName" : middleName,
-                                "issueDate" : true,
-                                "idNumber" : true,
-                                "qrCode" : true,
+                                "issueDate" : issueDate,
+                                "idNumber" : idNo,
+                                "qrCode" : qrCode,
                             },
-                            "startDate" : "startDate",
-                            "endDate" : "endDate",
-                            "cardSize" : "cardSize",
-                        },
-                        "BgImg" : jsData.bgImg
+                            "startDate" : startDate,
+                            "endDate" : endDate,
+                            "cardSize" : cardSize,
+                            "cardBgImg" : bgImg
+                        }
                     }
                 }),
                 });
         
 
-                var res = await response.json();
-                console.log(res)
+                await response.json()
+                .then(data => {
+                  console.log(data)
+                  if(data.data.sid != null) {
+                    toastr.success('Project Added Successfully');
+                  }
+                  else {
+                    toastr.error('Error: Failed to Add Project');
+                  }
+                  
+                });
         }
         else {
             try {
