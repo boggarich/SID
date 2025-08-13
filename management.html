@@ -2358,7 +2358,6 @@
         <script src="js/google_maps.js"></script>
         <script src="js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="js/datagrid/datatables/datatables.bundle.js"></script>
-        <script src="js/statistics/flot/flot.bundle.js"></script>
         <script src="js/formplugins/dropzone/dropzone.js"></script>
         <script src="js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
         <script src="js/formplugins/select2/select2.bundle.js"></script>
@@ -2657,11 +2656,11 @@
                         columns: [
                             { data: 'fullName' },
                             { data: 'projectId' },
+                            { data: 'assignSchools' },
                             { data: null },
-                            { data: null },
-                            { data: null },
-                            { data: null },
-                            { data: null },
+                            { data: 'instEngaged' },
+                            { data: 'totalSubmits' },
+                            { data: 'taskDuration' },
                             { data: null },
                             { data: 'photoId' },
                             { data: 'photoIdNumber' },
@@ -2702,29 +2701,32 @@
                                 orderable: false,
                                 render: function(data, type, full, meta)
                                 {
-                                    return `12 months`
+                                    return data;
                                 },
                             },
                             {
                                 targets: 5,
+				responsivePriority: 6, 
                                 title: 'Total Submits',
                                 orderable: false,
                                 render: function(data, type, full, meta)
                                 {
-                                    return `008`
+                                    return data;
                                 },
                             },
                             {
                                 targets: 4,
+				responsivePriority: 5, 
                                 title: 'Inst. Engaged',
                                 orderable: false,
                                 render: function(data, type, full, meta)
                                 {
-                                    return `008`
+                                    return data;
                                 },
                             },
                             {
                                 targets: 3,
+				responsivePriority: 4, 
                                 title: 'Start date',
                                 orderable: false,
                                 render: function(data, type, full, meta)
@@ -2734,14 +2736,18 @@
                             },
                             {
                                 targets: 2,
+				responsivePriority: 3, 
                                 render: function(data, type, full, meta) {
+
                                     var assignSchools = '';
 
-                                    if(!data) {
-                                        $.each(full, function(key, data) {
+
+                                    if(data) {
+                                        $.each(data, function(key, data) {
+
                                         assignSchools += `
                                                                             <div class="badge-pill-wrapper pb-1">
-                                                                                <span class="badge badge-pill project-status job-pill started text-white">${data}</span>
+                                                                                <span class="badge badge-pill project-status job-pill started text-white">${data.name}</span>
                                                                             </div>
                                                                             
                                                                         `
@@ -2753,12 +2759,14 @@
                                                                                 <a class="badge badge-pill btn btn-outline-primary"  data-toggle="modal" data-target="#addTaskToProjectOfficerNameModal"><span class="icon-small"><i class="fal fa-plus"></i></span>Add</a>
                                                                             </div>`;
 
+
                                     return assignSchools;
                                 }
                             },
                             {
                                 targets: 1,
                                 title: 'Assign Project ID',
+				responsivePriority: 2, 
                                 orderable: false,
                                 render: function(data, type, full, meta)
                                 {
@@ -2767,6 +2775,7 @@
                             },
                             {
                                 targets: 0,
+				responsivePriority: 1, 
                                 title: 'Project Officer name',
                                 orderable: false,
                                 render: function(data, type, full, meta)
@@ -2845,7 +2854,7 @@
                     data: data.data.getPresses.presses,
                     columns: [
                         { data: 'name' },
-                        { data: 'officers' },
+                        { data: null },
                         { data: null },
                         { data: null }
                     ],
@@ -2865,8 +2874,18 @@
                         orderable: false,
                         render: function(data, type, full, meta)
                         {
-                            console.log(data, 'press render')
-                           return `<a data-toggle="modal" data-target="#assignPrintOfficerModal"><button type="button" class="btn btn-outline-primary"><span class="icon-small"><i class="fal fa-plus"></i></span>  Assign Officer</button></a>`;
+
+				if(Object.keys(full.officer).length > 0)
+				{
+					
+                                   return `${full.officer.fullName}`;
+                               
+				}
+
+				else 
+				{
+	                           return `<a data-toggle="modal" data-target="#assignPrintOfficerModal"><button type="button" class="btn btn-outline-primary"><span class="icon-small"><i class="fal fa-plus"></i></span>  Assign Officer</button></a>`;
+				}
                             },
                         },  
                         {
@@ -2875,7 +2894,7 @@
                         orderable: false,
                         render: function(data, type, full, meta)
                         {
-                           return `${data}<br><small class="text-muted">Kokomlemle, Accra</small>`;
+                           return `${data}<br><small class="text-muted">${full.id}</small>`;
                         },
                         },            
                     {
@@ -3011,7 +3030,7 @@
                         { data : 'population' },
                         { data : 'projectOfficers' },
                         { data : null },
-                        { data : null},
+                        { data : 'completed'},
                         { data : null}
                     ],
                     responsive: true,
@@ -3022,7 +3041,7 @@
                         render: function(data, type, full, meta)
                         {
                             
-                            return "150/300";
+                            return `${data}` + "/" + `${full.population}`;
                         },
                     },
                     {
@@ -3031,7 +3050,7 @@
                         render: function(data, type, full, meta)
                         {
                             
-                            return "01-03-2021<br><small class=\"text-muted\">0244115533</small>";
+                            return "01-03-2021<br><small class=\"text-muted\">End date 01-03-2021</small>";
                         },
                     },
                     {
@@ -3151,129 +3170,6 @@
                     
                 }
 
-                /* TAB 1: UPDATING CHART */
-                            var data = [],
-                totalPoints = 200;
-                var getRandomData = function()
-                {
-                    if (data.length > 0)
-                        data = data.slice(1);
-
-                    // do a random walk
-                    while (data.length < totalPoints)
-                    {
-                        var prev = data.length > 0 ? data[data.length - 1] : 50;
-                        var y = prev + Math.random() * 10 - 5;
-                        if (y < 0)
-                            y = 0;
-                        if (y > 100)
-                            y = 100;
-                        data.push(y);
-                    }
-
-                    // zip the generated y values with the x values
-                    var res = [];
-                    for (var i = 0; i < data.length; ++i)
-                        res.push([i, data[i]])
-                    return res;
-                }
-                // setup control widget
-                var updateInterval = 1500;
-                $("#updating-chart").val(updateInterval).change(function()
-                {
-
-                    var v = $(this).val();
-                    if (v && !isNaN(+v))
-                    {
-                        updateInterval = +v;
-                        $(this).val("" + updateInterval);
-                    }
-
-                });
-                // setup plot
-                var options = {
-                    colors: ['#6FB3E6'],
-                    series:
-                    {
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 0.5,
-                            fill: 0.9,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0.9,
-                                },
-                                {
-                                    opacity: 0
-                                }]
-                            },
-                        },
-
-                        shadowSize: 0 // Drawing is faster without shadows
-                    },
-                    grid:
-                    {
-                        borderColor: 'rgba(0,0,0,0.05)',
-                        borderWidth: 1,
-                        labelMargin: 5
-                    },
-                    xaxis:
-                    {
-                        color: '#F0F0F0',
-                        tickColor: 'rgba(0,0,0,0.05)',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 100,
-                        color: '#F0F0F0',
-                        tickColor: 'rgba(0,0,0,0.05)',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    }
-                };
-                var plot = $.plot($("#updating-chart"), [getRandomData()], options);
-                /* live switch */
-                $('input[type="checkbox"]#start_interval').click(function()
-                {
-                    if ($(this).prop('checked'))
-                    {
-                        $on = true;
-                        updateInterval = 1500;
-                        update();
-                    }
-                    else
-                    {
-                        clearInterval(updateInterval);
-                        $on = false;
-                    }
-                });
-                var update = function()
-                {
-                    if ($on == true)
-                    {
-                        plot.setData([getRandomData()]);
-                        plot.draw();
-                        setTimeout(update, updateInterval);
-
-                    }
-                    else
-                    {
-                        clearInterval(updateInterval)
-                    }
-
-                }
 
         </script>
         <!--This page contains the basic JS and CSS files to get started on your project. If you need aditional addon's or plugins please see scripts located at the bottom of each page in order to find out which JS/CSS files to add.-->

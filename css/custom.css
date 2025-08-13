@@ -288,24 +288,24 @@ span.select2-container * {
   }
 
   #card-generator-school-crest {
-      top: 20px;
+      top: 13px;
       left: 50px;
   }
 
   #card-generator-school-name {
-      top: 69px;
+      top: 49px;
       left: 0;
       right: 0;
       font-weight: 500;
-      font-size: 26px;
+      font-size: 17px;
       display: flex;
       justify-content: center;
       color: black;
   }
 
   #card-generator-student-name {
-    top: 142px;
-    left: 239px;
+    top: 90px;
+    left: 160px;
     right: 0;
     font-weight: 300;
     font-size: 18px;
@@ -314,8 +314,8 @@ span.select2-container * {
 }
 
 #card-generator-guardian-contact-no {
-    top: 199px;
-    left: 239px;
+    top: 126px;
+    left: 160px;
     right: 0;
     font-weight: 300;
     font-size: 18px;
@@ -324,8 +324,8 @@ span.select2-container * {
 }
 
 #card-generator-issue-date {
-    top: 253px;
-    left: 239px;
+    top: 164px;
+    left: 160px;
     right: 0;
     font-weight: 300;
     font-size: 18px;
@@ -334,8 +334,8 @@ span.select2-container * {
 }
 
 #card-generator-id-no {
-    top: 312px;
-    left: 239px;
+    top: 201px;
+    left: 160px;
     right: 0;
     font-weight: 300;
     font-size: 18px;
@@ -345,8 +345,8 @@ span.select2-container * {
 
 
 #card-generator-sex {
-    top: 199px;
-    left: 417px;
+    top: 126px;
+    left: 275px;
     right: 0;
     font-weight: 300;
     font-size: 18px;
@@ -355,8 +355,8 @@ span.select2-container * {
 }
 
 #card-generator-expiry-date{
-    top: 253px;
-    left: 359px;
+    top: 164px;
+    left: 239px;
     right: 0;
     font-weight: 300;
     font-size: 18px;

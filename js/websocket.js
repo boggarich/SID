@@ -1,5 +1,5 @@
 // Create WebSocket connection.
-window.onload =  function() {
+/*window.onload =  function() {
   const GQL = {
       CONNECTION_INIT: 'connection_init',
       CONNECTION_ACK: 'connection_ack',
@@ -12,10 +12,11 @@ window.onload =  function() {
       ERROR: 'error',
       COMPLETE: 'complete'
     }
+*/
 
-    const webSocket = new WebSocket("wss://staging.api.desafrica.com/graphql", "graphql-ws");
+//    const webSocket = new WebSocket("wss://staging.api.desafrica.com/graphql", "graphql-ws");
 
-    webSocket.onopen = event => {
+ /*   webSocket.onopen = event => {
       webSocket.send(JSON.stringify({
         type: GQL.CONNECTION_INIT,
         payload: {}
@@ -60,7 +61,9 @@ window.onload =  function() {
       }))
     }
 
-    webSocket.addEventListener('message', function(event) {
+*/
+
+    /* webSocket.addEventListener('message', function(event) {
       //alert('new websocket message')
       const data = JSON.parse(event.data)
 
@@ -84,7 +87,7 @@ window.onload =  function() {
             const full = data.payload.data.getProgress;
              
 
-            const map_features = school_data.map((data) => ({
+           /* const map_features = school_data.map((data) => ({
               position: new google.maps.LatLng(data.location.lat, data.location.lng),
               status: data.status,
               school_name: data.name,
@@ -92,21 +95,47 @@ window.onload =  function() {
                 logo: data.logo,
                 locationName : data.locationName
             }));
+	   */
+
+	    const map_features = [
+		{
+              		position: new google.maps.LatLng(5.5715285, -0.2463921),
+              		status: 'started',
+              		school_name: 'Accra Academy SHS',
+              		population: '13000',
+                	logo: ,
+                	locationName : 'Accra'
+            }
+	];
 
             //console.log(map_features)
-            initMap(map_features);
+            //initMap(map_features);
             controlCenterObj.setProgressKeys(controlCenterKeys, full);
         }
     }
 
   });
+*/
 
-  webSocket.onclose = function(){
+ /* webSocket.onclose = function(){
     // alert("connection closed")
       controlCenterObj.getSchools();
-  };
+  };*/
 
-  controlCenterObj.getSchools();
+	    const map_features = [
+		{
+              		position: new google.maps.LatLng(5.5715285, -0.2463921),
+              		status: 'started',
+              		school_name: 'Accra Academy SHS',
+              		population: '13000',
+                	logo: '',
+                	locationName : 'Accra'
+            }
+	];
+
+  //initMap(map_features);
+
+  //controlCenterObj.getSchools();
   
 
 }

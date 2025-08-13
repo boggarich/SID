@@ -1,6 +1,6 @@
 let map;
 
-async function initMap(external) {
+async function initMap(external=true) {
     //console.log(external)
 
     if(external) {
@@ -62,7 +62,23 @@ async function initMap(external) {
 
 
 
-    const features = await external;
+    //const features = await external;
+
+
+	var features = [
+		{
+              		position: new google.maps.LatLng(5.5715285, -0.2463921),
+              		status: 'started',
+              		school_name: 'Accra Academy SHS',
+              		population: {
+				shsOne: 2136,
+                        	shsTwo: 1034,
+                        	shsThree: 2898,
+			},
+                	logo: 'img/ATTCCrest.jpg',
+                	locationName : 'Accra'
+            }
+	];
 
     
 
@@ -118,7 +134,7 @@ async function initMap(external) {
           </div>
           <div>
           <figure class="item-row-image">
-            <img src=https://dextraclass.com${logo}>
+            <img src=${logo}>
           </figure>
           </div>
         </div>

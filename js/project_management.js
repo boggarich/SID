@@ -349,7 +349,7 @@ class projectManagementClass {
 
     async getSchools() {
         
-        const response = await fetch('https://staging.api.desafrica.com/v1', {
+        /*const response = await fetch('https://staging.api.desafrica.com/v1', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: `
@@ -378,12 +378,76 @@ class projectManagementClass {
         });
 
         return await response.json();
+	*/
+
+	return await {
+	data: {
+			getSchools: {	
+				schools: [
+					{
+						schoolCode: '0244115533',
+						schoolName: 'Accra High School',
+						population: '300',
+						projectOfficers: [
+							{
+								fullName: 'Kweku Anase'
+							},
+							{
+								fullName: 'Abena Mansah'
+							}
+						],
+						completed: '150'
+					},
+					{
+						schoolCode: '0255114866',
+						schoolName: 'Accra Academy',
+						population: '205',
+						projectOfficers: [
+							{
+								fullName: 'Efya Siribuor Obonkruwa'
+							},
+							{
+								fullName: 'Nii Kwakwe Edin'
+							}
+						],
+						completed: '70'
+						
+					},
+					{
+						schoolCode: '0254685439',
+						schoolName: 'Achimota School',
+						population: '500',
+						projectOfficers: [
+							{
+								fullName: 'Kofi Baboni Mensah'
+							}
+						],
+						completed: '95'
+					},
+					{
+						schoolCode: '0551423684',
+						schoolName: 'Presbetarian School',
+						population: '125',
+						projectOfficers: [],
+						completed: '0'
+					},
+					{
+						schoolCode: '0577725465',
+						schoolName: 'Kumasi Technical School',
+						population: '1500',
+						projectOfficers: [],
+						completed: '95'
+					},
+				]
+			}
+		}
+	}
         
     }
 
     async getProjects() {
         
-        const response = await fetch('https://staging.api.desafrica.com/v1', {
+        /*const response = await fetch('https://staging.api.desafrica.com/v1', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: `
@@ -408,12 +472,52 @@ class projectManagementClass {
         });
 
         return await response.json();
+*/
+
+	return await {
+		data: {
+			getProjects: {	
+				projects: [
+					{
+						name: 'Ghana Education Service - SHS 2020',
+						id: '008',
+						startDate: '01-03-2021',
+					},
+
+					{
+						name: 'GES SHS 2 - 2021',
+						id: '007',
+						startDate: '01-03-2021',
+					},
+
+					{
+						name: 'GES SHS 3 - 2021',
+						id: '006',
+						startDate: '01-03-2021',
+					},
+
+					{
+						name: 'CCHN Student ID card',
+						id: '005',
+						startDate: '01-03-2021',
+					},
+
+					{
+						name: 'National ID',
+						id: '004',
+						startDate: '01-03-2021',
+					}
+				]
+			}
+		}
+		
+	}
         
     }
     
     async getProjectOfficers() {
         
-        const response = await fetch('https://staging.api.desafrica.com/v1', {
+        /*const response = await fetch('https://staging.api.desafrica.com/v1', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: `
@@ -447,13 +551,122 @@ class projectManagementClass {
         });
 
         return await response.json();
+*/
+
+	return await {
+		data: {
+		getProjectOfficers: {
+			projectOfficers: [
+				{
+					fullName: 'Kweku Ananse',
+					phone: '0244115533',
+					projectId: 'AA',
+					assignSchools: [
+						{
+							name: 'Accra High School',
+						},
+						{
+							name: 'Accra Academy',
+						}
+					],
+					instEngaged: '008',
+					totalSubmits: '008',
+					taskDuration: '12 months',
+					photoId: 'Passport',
+					photoIdNumber: 'GS-237689',
+					project: {
+						name: 'GES SHS 2 - 2021',
+						startDate: '01-03-2021',
+						endDate: '01-03-2021',
+					}
+				},
+				{
+					fullName: 'Abena Mansah',
+					phone: '0255114466',
+					projectId: 'AB',
+					assignSchools: [
+						{
+							name: 'Kumasi Technical School',
+						},
+						{
+							name: 'Achimota School',
+						}
+					],
+					instEngaged: '007',
+					totalSubmits: '007',
+					taskDuration: '15 days',
+					photoId: 'Voters ID',
+					photoIdNumber: 'GS-237689',
+					project: {
+						name: 'GES SHS 2 - 2021',
+						startDate: '01-03-2021',
+						endDate: '01-03-2021',
+					}
+				},
+				{
+					fullName: 'Efya Siribuour',
+					phone: '0254685439',
+					projectId: 'AC',
+					assignSchools: [
+						{
+							name: 'Kumasi Technical School',
+						}
+					],
+					instEngaged: '006',
+					totalSubmits: '006',
+					taskDuration: '2 weeks',
+					photoId: 'National ID',
+					photoIdNumber: 'GS-237689',
+					project: {
+						name: 'GES SHS 2 - 2021',
+						startDate: '01-03-2021',
+						endDate: '01-03-2021',
+					}
+				},
+				{
+					fullName: 'Kweku Ananse',
+					phone: '0244115533',
+					projectId: 'AD',
+					assignSchools: [],
+					instEngaged: '',
+					totalSubmits: '',
+					taskDuration: '1 month',
+					photoId: 'NHIS',
+					photoIdNumber: 'GS-237689',
+					project: {
+						name: 'GES SHS 2 - 2021',
+						startDate: '01-03-2021',
+						endDate: '01-03-2021',
+					}
+				},
+				{
+					fullName: 'Kweku Ananse',
+					phone: '0244115533',
+					projectId: 'AE',
+					assignSchools: [],
+					instEngaged: '',
+					totalSubmits: '',
+					taskDuration: '5 weeks',
+					photoId: 'Voters',
+					photoIdNumber: 'GS-237689',
+					project: {
+						name: 'GES SHS 2 - 2021',
+						startDate: '01-03-2021',
+						endDate: '01-03-2021',
+					}
+				},
+
+			]
+		}
+		}
+	}
       
         
     }
 
     async getPrintOfficers() {
         
-      const response = await fetch('https://staging.api.desafrica.com/v1', {
+      /*const response = await fetch('https://staging.api.desafrica.com/v1', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query: `
@@ -476,12 +689,13 @@ class projectManagementClass {
       });
 
       return await response.json();
-    
+    */
       
   }
 
     async getPresses() {
         
+/*
         const response = await fetch('https://staging.api.desafrica.com/v1', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -510,6 +724,48 @@ class projectManagementClass {
         });
 
         return await response.json();
+
+*/
+
+	return await {
+		data: {
+			getPresses: {
+				presses: [
+					{
+						id: 'Kokomlemle',
+						name: 'Lema Press',
+						officer: {
+							fullName: 'Kofi Omane'
+						}
+					},
+					{
+						id: 'Accra-Newtown, Accra',
+						name: 'Newtown press',
+						officer: {
+							fullName: 'Nii Alonte'
+						}
+					},
+					{
+						id: 'Location, District, Region',
+						name: 'ABC Printing',
+						officer: {
+							fullName: 'Abdul Osman'
+						}
+					},
+					{
+						id: 'North-Kaneshie, Accra',
+						name: 'RS Press',
+						officer: {}
+					},
+					{
+						id: 'Circle, Accra',
+						name: 'Shinning colors',
+						officer: {}
+					},
+				]
+			}
+		}	
+	}
         
     }
 
